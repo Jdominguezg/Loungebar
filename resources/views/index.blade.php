@@ -2,14 +2,15 @@
 <html>
 @include('head')
 <body>
-	<header>
-		
-	</header>
-	<main>
-
-	</main>
-	<footer>
-
-	</footer>
+	@include('header')
+	<section class="container">
+		<h1> Hola </h1>
+		<h2> Hola </h2>
+		<h3> Hola </h3>
+		<h4> Hola </h4>
+		<h5> Hola </h5>
+		<h6> Hola </h6>
+	</section>
+	@include('footer')
 </body>
 </html>
