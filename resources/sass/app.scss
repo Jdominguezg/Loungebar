@@ -4,6 +4,21 @@
 // Bootstrap
 @import '~bootstrap/dist/css/bootstrap-grid.min.css';
 
+*{
+	font-family: roboto, sans-serif;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: none;
+}
+
+.center{
+	text-align: center;
+}
+
+.pointer{
+	cursor: pointer;
+}
 
 @import './header.scss';
 @import './content.scss';

@@ -3,7 +3,7 @@
 @include('head')
 <body>
 	@include('header')
-	<section class="container">
+	<section class="content">
 		<h1> Hola </h1>
 		<h2> Hola </h2>
 		<h3> Hola </h3>
@@ -11,6 +11,8 @@
 		<h5> Hola </h5>
 		<h6> Hola </h6>
 	</section>
+	
+	
 	@include('footer')
 </body>
 </html>

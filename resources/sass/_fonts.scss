@@ -1,3 +1,4 @@
+
 @font-face{
 	font-family: 'roboto';
 	src: url('../fonts/Roboto-Thin.ttf');
@@ -66,10 +67,6 @@
   font-feature-settings: 'liga';
 }
 
-*{
-	font-family: roboto, sans-serif;
-}
-
 h1{
 	font-weight: 900;
 }
@@ -87,4 +84,8 @@ h5{
 }
 h6{
 	font-weight: 100;
+}
+
+h1,h2,h3,h4,h5,h6{
+  margin: 10px 0;
 }
