@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/addrecipe', function(){
+	return view('addrecipe');
+});
