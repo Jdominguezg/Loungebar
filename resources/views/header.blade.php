@@ -6,7 +6,7 @@
 		LoungeBar - Admin
 	</div>
 	<div class="col-3">
-		<button class="action_button"><span>Log in</span></button>
+		<button class="action_button log_in_btn"><span>Log in</span></button>
 	</div>
 </header>
 <nav>

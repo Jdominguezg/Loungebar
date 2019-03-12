@@ -1,0 +1,22 @@
+.fixed{
+	position: fixed;
+}
+.absolute{
+	position: absolute;
+}
+.relative{
+	position: relative;
+}
+.centered{
+	margin: 0 auto;
+}
+.lefted{
+	float: left;
+}
+.righted{
+	float: right;
+}
+.Vcentered{
+	top: 50%;
+	transform: translateY(-50%);
+}

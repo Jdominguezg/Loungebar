@@ -1,0 +1,23 @@
+@keyframes ripple{
+	to{
+		opacity: 0;
+		transform: scale(2.5);
+	}
+}
+
+@keyframes headermd{
+	from{
+		background-image: -webkit-radial-gradient( 50% 100%, 
+			circle closest-corner,
+			transparent 0,
+			transparent 39px,
+			$primary_color 40px);
+	}
+	to{
+		background-image: -webkit-radial-gradient( 91.6666669% 100%, 
+			circle closest-corner,
+			transparent 0,
+			transparent 39px,
+			$primary_color 40px);
+	}
+}

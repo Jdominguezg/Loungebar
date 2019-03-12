@@ -1,9 +1,17 @@
 // Variables
-@import './_variables.scss';
-@import './_fonts.scss';
+@import '_variables.scss';
+@import '_shadows.scss';
+@import '_fonts.scss';
+@import 'animations.scss';
 // Bootstrap
 @import '~bootstrap/dist/css/bootstrap-grid.min.css';
+// Elementos
+@import 'cursor.scss';
+@import 'text_pluggin.scss';
+@import 'position_pluggin.scss';
 @import 'forms.scss';
+@import 'buttons.scss';
+
 
 *{
 	font-family: roboto, sans-serif;
@@ -11,14 +19,6 @@
 	padding: 0;
 	border: 0;
 	outline: none;
-}
-
-.center{
-	text-align: center;
-}
-
-.pointer{
-	cursor: pointer;
 }
 
 @import './header.scss';
