@@ -249,9 +249,10 @@ h6 {
   position: relative;
   height: 56px;
   min-width: 200px;
-  display: inline-flex;
+  display: block;
   box-sizing: border-box;
   overflow: visible;
+  margin: 10px 0;
 }
 
 .textfield input {
@@ -262,10 +263,10 @@ h6 {
   padding: 12px 16px 14px;
   border: 1px solid rgba(0, 0, 0, 0.24);
   border-radius: 4px;
-  transition: all 0.3s ease;
+  transition: all 0.15s ease;
 }
 
-.textfield input:hover {
+.textfield input:not(:focus):hover {
   border: 1px solid #ffca28;
 }
 
@@ -274,7 +275,27 @@ h6 {
   font-size: 16px;
   top: 18px;
   left: 17px;
-  opacity: 0.6;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 0;
+  transition: all 0.15s ease;
+  background-color: transparent;
+  cursor: text;
+}
+
+input:focus {
+  border: 2px solid #ffca28;
+}
+
+label.notEmpty,
+input:focus + label {
+  top: -7px;
+  font-size: 12px;
+  padding: 0 4px;
+  background-color: #fff;
+}
+
+input:focus + label {
+  color: #ffca28;
 }
 
 button {
@@ -284,7 +305,6 @@ button {
   display: inline-flex;
   position: relative;
   font-size: 0.875rem;
-  font-weight: bold;
   letter-spacing: 0.0892857143em;
   text-decoration: none;
   min-width: 64px;

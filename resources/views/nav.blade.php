@@ -1,4 +1,4 @@
-<nav class="open">
+<nav class="">
 	
 </nav>
 <overflow></overflow>
