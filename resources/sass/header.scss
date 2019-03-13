@@ -4,14 +4,12 @@ header{
 	position: fixed;
 	top:0;
 	left:0;
-	background-image: radial-gradient( circle at calc(100% - 12.5000005%) 100%, transparent 39px, $primary-color 40px);
-	/*background-color: $primary-color;*/
+	/* background-image: radial-gradient( circle at calc(100% - 12.5000005%) 100%, transparent 39px, $primary-color 40px);*/
+	background-color: $primary-color;
 	display: flex;	
 	align-items: center;
 	vertical-align: middle;
 	color: $primary-text;
-}
-
-header .log_in_btn{
-	top: 28px;
+	box-shadow: $dp2;
+	z-index: 1;
 }

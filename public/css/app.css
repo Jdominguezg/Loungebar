@@ -111,6 +111,30 @@ h6 {
   margin: 10px 0;
 }
 
+.black {
+  font-weight: 900;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.thin {
+  font-weight: 100;
+}
+
 @-webkit-keyframes ripple {
   to {
     opacity: 0;
@@ -402,16 +426,48 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  background-image: radial-gradient(circle at calc(100% - 12.5000005%) 100%, transparent 39px, #43a047 40px);
-  /*background-color: $primary-color;*/
+  /* background-image: radial-gradient( circle at calc(100% - 12.5000005%) 100%, transparent 39px, $primary-color 40px);*/
+  background-color: #43a047;
   display: flex;
   align-items: center;
   vertical-align: middle;
   color: #ffffff;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  z-index: 1;
 }
 
-header .log_in_btn {
-  top: 28px;
+nav {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 320px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+nav.open {
+  left: 0;
+}
+
+overflow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: 0;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+nav.open + overflow {
+  opacity: 0.3;
+  visibility: visible;
 }
 
 section.content {
