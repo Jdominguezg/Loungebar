@@ -20,10 +20,8 @@
 	border: 0;
 	outline: none;
 }
-[class*='col-']{
-	padding: 0;
-}
 
 @import 'header.scss';
 @import 'nav.scss';
 @import 'content.scss';
+@import 'addrecipe.scss';

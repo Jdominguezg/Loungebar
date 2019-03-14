@@ -4,27 +4,43 @@
 	¡Vamos a añadir una nueva receta!
 </h2>
 
-<form id="new_recipe" class="center" method="post">
+{{-- Form --}}
+<section class="form center">
 	<h3 class="light text_left">Primero debemos insertar un título para esta receta</h3>
-	<div class="textfield">
+	<div class="textfield col-12">
 		<input type="text" name="recipe_name" id="recipe_name">
 		<label for="recipe_name">Título</label>
 	</div>
 	<br>
 	<h3 class="light text_left">A continuación insertaremos los ingredientes y sus cantidades</h3>
-	<div class="ingredients row">
-		<div id="ingredient_1" class="textfield ingredient_name col-5">
-			<input type="text" name="recipe_ingredient_1" id="recipe_ingredient_1">
-			<label for="recipe_ingredient_1">Ingrediente 1</label>
+	<div class="ingredients" data-global-count="1">
+		<div id="ingredient_1" class="row ingredient">
+			<div class="textfield col-12">
+				<input id="name_1" type="text" name="ingredient_name">
+				<label for="name_1">Ingrediente 1</label>
+			</div>
+			<div class="textfield col-5">
+				<input id="quantity_1" type="number" min="1" name="quantity">
+				<label for="quantity_1">Cantidad</label>
+			</div>			
+			<div class="textfield col-4">
+				<select id="unit_1">
+					<option>gr.</option>
+					<option>Uds.</option>
+					<option>Kg.</option>
+				</select>
+			</div>
+			<div class="textfield col-3">
+				<button id="remove_1" class="shaped_button remove_ingredient" data-id='1'>
+					<span><i class="material-icons">delete</i></span>
+				</button>
+			</div>
 		</div>
-		<div id="ingredient_1_cuantity" class="textfield ingredient col-3">
-			<input type="number" name="recipe_ingredient_1_cuantity" id="recipe_ingredient_1_cuantity">
-			<label for="recipe_ingredient_1_cuantity">Cantidad</label>
-		</div>
-		<button class="raised_button">Añadir ingrediente</button>
+		<button id="addIngredient" class="raised_button">Añadir ingrediente</button>
 	</div>
+</section>
+{{-- End Form --}}
 
-</form>	
 
 
 @endsection

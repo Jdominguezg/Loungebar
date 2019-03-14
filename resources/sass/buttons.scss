@@ -22,6 +22,11 @@ button{
 	background-color: transparent;
 }
 
+[class*='col-'] button,
+[class*='col-'] button .material-icons{
+	margin:0;
+}
+
 button .ripple{
 	background-color: rgba(255,255,255,0.7);
 	position: absolute;
@@ -31,11 +36,6 @@ button .ripple{
 	transform: scale(0);
 	animation: ripple .3s linear;
 }
-
-/*button.text_button .ripple,
-button.outlined_button .ripple{
-	background-color: $primary_light;
-}*/
 
 button:before{
 	content:'';
@@ -110,7 +110,8 @@ button.action_button:hover{
 	box-shadow: $dp8;
 }
 
-button.action_button .material-icons{
+button.action_button .material-icons
+{
 	width: 24px;
 	height: 24px;
 	font-size: 24px;

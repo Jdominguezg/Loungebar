@@ -36580,18 +36580,69 @@ module.exports = function(module) {
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  function addingredient(element, id) {
-    var html = '<div id="ingredient_' + id + '"  class="textfield ingredient_name col-4">' + '<input type="text" name="recipe_ingredient_' + id + '" id="recipe_ingredient_' + id + '">' + '<label for="recipe_ingredient_' + id + '">Ingrediente ' + id + '</label>' + '</div>' + '<div id="ingredient_' + id + '_cuantity" class="textfield ingredient-cuantity col-3">' + '<input type="number" name="recipe_ingredient_' + id + '_cuantity" id="recipe_ingredient_' + id + '_cuantity">' + '<label for="recipe_ingredient_' + id + '_cuantity">Cantidad</label>' + '</div>';
-    element.after(html);
+  var ingredients = $('.ingredients');
+  var ingredientsCount = ingredients.attr('data-global-count');
+
+  function generateIngredientHtml(id) {
+    var html = '<div id="ingredient_' + id + '" class="row ingredient">' + '<div class="textfield col-12">' + '<input id="name_' + id + '" type="text" name="ingredient_name">' + '<label for="name_' + id + '">Ingrediente ' + id + '</label>' + '</div>' + '<div class="textfield col-5">' + '<input id="quantity_' + id + '" type="number" min="1" name="quantity">' + '<label for="quantity_' + id + '">Cantidad</label>' + '</div>' + '<div class="textfield col-4">' + '<select id="unit_' + id + '">' + '<option>gr.</option>' + '<option>Uds.</option>' + '<option>Kg.</option>' + '</select>' + '</div>' + '<div class="textfield col-3">' + '<button id="remove_' + id + '" class="shaped_button remove_ingredient" data-id="' + id + '">' + '<span><i class="material-icons">delete</i></span>' + '</button>' + '</div>' + '</div>';
+    return html;
   }
 
-  $('.ingredients button').on('click', function (e) {
-    e.preventDefault();
+  function editIngredientsId(elements) {
+    elements.each(function () {
+      var element = $(this);
+      var id = element.attr('id').substr(element.attr('id').length - 1);
+      var new_id = id - 1;
+      element.attr('id', 'ingredient_' + new_id);
+      var name = $('#name_' + id);
+      var namelabel = name.siblings('label');
+      var namelabeltext = namelabel.html().substr(0, namelabel.html().length - 1);
+      name.attr('id', 'name_' + new_id);
+      namelabel.attr('for', 'name_' + new_id);
+      namelabel.html(namelabeltext + new_id);
+      var quantity = $('#quantity_' + id);
+      var quantitylabel = quantity.siblings('label');
+      quantity.attr('id', 'quantity_' + new_id);
+      quantitylabel.attr('for', 'quantity_' + new_id);
+      var unit = $('#unit_' + id);
+      unit.attr('id', 'unit_' + new_id);
+      var remove = $('#remove_' + id);
+      remove.attr('id', 'remove_' + new_id);
+      remove.attr('data-id', new_id);
+    });
+  }
+
+  function addingredient(element, count) {
+    ingredients.attr('data-global-count', count);
+    element.after(generateIngredientHtml(count));
+  }
+
+  function removeingredient(id) {
+    var element = $('#ingredient_' + id);
+    var elements = element.nextAll('.ingredient');
+
+    if (elements) {
+      editIngredientsId(elements);
+    }
+
+    element.remove();
+    ingredientsCount--;
+  }
+
+  $(document).on('click', '#addIngredient', function (e) {
+    ingredientsCount++;
     var button = $(this);
-    var textfield = button.siblings('.textfield.ingredient_name').last();
-    var id = textfield.attr('id').substring(textfield.attr('id').length - 1);
-    id++;
-    addingredient(textfield, id);
+    var ingredient = button.siblings('.ingredient').last();
+    addingredient(ingredient, ingredientsCount);
+  });
+  $(document).on('click', '.remove_ingredient', function (e) {
+    var button = $(this);
+    var id = button.attr('data-id');
+    console.log(id);
+
+    if (ingredientsCount > 1) {
+      removeingredient(id);
+    }
   });
 });
 
@@ -36760,8 +36811,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
