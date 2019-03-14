@@ -36611,13 +36611,13 @@ $(document).ready(function () {
       remove.attr('id', 'remove_' + new_id);
       remove.attr('data-id', new_id);
     });
-  } // Añade un nuevo ingrediente al formulario
+  } // Añade un nuevo ingrediente al formulario.
 
 
   function addingredient(element, count) {
     ingredients.attr('data-global-count', count);
     element.after(generateIngredientHtml(count));
-  } // 
+  } // Elimina un ingradiente del formulario.
 
 
   function removeingredient(id, count) {
@@ -36629,14 +36629,30 @@ $(document).ready(function () {
     }
 
     element.remove();
+  } //function comrpueba si el numero de ingredientes es igual a 1.
+
+
+  function ingredientsCountIsOne() {
+    if (ingredientsCount == 1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   $(document).on('click', '#addIngredient', function (e) {
     var ingredient = $(this).siblings('.ingredient').last();
-
-    if (ingredientsCount = 1) {}
-
     ingredientsCount++;
+
+    if (!ingredientsCountIsOne()) {
+      $('#quantity_1').parent().removeClass('col-6');
+      $('#unit_1').parent().removeClass('col-6');
+      $('#remove_1').parent().removeClass('d-none');
+      $('#quantity_1').parent().addClass('col-5');
+      $('#unit_1').parent().addClass('col-4');
+      $('#remove_1').parent().addClass('col-3');
+    }
+
     addingredient(ingredient, ingredientsCount);
   });
   $(document).on('click', '.remove_ingredient', function (e) {
@@ -36645,6 +36661,15 @@ $(document).ready(function () {
     if (ingredientsCount > 1) {
       removeingredient(id);
       ingredientsCount--;
+    }
+
+    if (ingredientsCountIsOne()) {
+      $('#quantity_1').parent().addClass('col-6');
+      $('#unit_1').parent().addClass('col-6');
+      $('#remove_1').parent().addClass('d-none');
+      $('#quantity_1').parent().removeClass('col-5');
+      $('#unit_1').parent().removeClass('col-4');
+      $('#remove_1').parent().removeClass('col-3');
     }
   });
 });
@@ -36814,8 +36839,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

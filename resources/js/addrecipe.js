@@ -65,13 +65,13 @@ $(document).ready(function() {
 		});		
 	}
 
-// Añade un nuevo ingrediente al formulario
+// Añade un nuevo ingrediente al formulario.
 	function addingredient(element, count){
 		ingredients.attr('data-global-count', count);
 		element.after(generateIngredientHtml(count));
 	}
 
-// 
+// Elimina un ingradiente del formulario.
 	function removeingredient(id, count){
 		var element = $('#ingredient_'+id);
 		var elements = element.nextAll('.ingredient');
@@ -81,12 +81,28 @@ $(document).ready(function() {
 		element.remove();			
 	}
 
-	$(document).on('click', '#addIngredient', function(e){
-		var ingredient = $(this).siblings('.ingredient').last();
-		if(ingredientsCount=1){
-			
+//function comrpueba si el numero de ingredientes es igual a 1.
+	function ingredientsCountIsOne(){
+		if(ingredientsCount == 1){
+			return true;
 		}
-		ingredientsCount++
+		else{
+			return false;
+		}
+	}	
+
+	$(document).on('click', '#addIngredient', function(e){
+		var ingredient = $(this).siblings('.ingredient').last();		
+		ingredientsCount++;
+
+		if(!ingredientsCountIsOne()){
+			$('#quantity_1').parent().removeClass('col-6');
+			$('#unit_1').parent().removeClass('col-6');
+			$('#remove_1').parent().removeClass('d-none');	
+			$('#quantity_1').parent().addClass('col-5');
+			$('#unit_1').parent().addClass('col-4');
+			$('#remove_1').parent().addClass('col-3');
+		}
 		addingredient(ingredient, ingredientsCount);
 	});
 
@@ -97,5 +113,15 @@ $(document).ready(function() {
 			removeingredient(id);
 			ingredientsCount--;	
 		}
+
+		if(ingredientsCountIsOne()){
+			$('#quantity_1').parent().addClass('col-6');
+			$('#unit_1').parent().addClass('col-6');
+			$('#remove_1').parent().addClass('d-none');	
+			$('#quantity_1').parent().removeClass('col-5');
+			$('#unit_1').parent().removeClass('col-4');
+			$('#remove_1').parent().removeClass('col-3');			
+		}
+
 	});
 });
