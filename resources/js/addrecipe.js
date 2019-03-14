@@ -2,6 +2,7 @@ $(document).ready(function() {
 	var ingredients = $('.ingredients');
 	var ingredientsCount = ingredients.attr('data-global-count');
 
+// Devuelve el html de un nuevo ingrediente junto a su Id.
 	function generateIngredientHtml(id){
 		var html = 
 		'<div id="ingredient_'+id+'" class="row ingredient">'+
@@ -29,6 +30,8 @@ $(document).ready(function() {
 		return html;
 	}
 
+
+	// Resta -1 a los id de los ingredientes que continuan al ingrediente eliminado.
 	function editIngredientsId(elements){
 		elements.each(function(){
 			var element = $(this);
@@ -59,41 +62,40 @@ $(document).ready(function() {
 
 			remove.attr('id', 'remove_'+new_id);
 			remove.attr('data-id', new_id);
-		});
-			
-		
+		});		
 	}
 
+// Añade un nuevo ingrediente al formulario
 	function addingredient(element, count){
 		ingredients.attr('data-global-count', count);
 		element.after(generateIngredientHtml(count));
 	}
 
-	function removeingredient(id){
+// 
+	function removeingredient(id, count){
 		var element = $('#ingredient_'+id);
 		var elements = element.nextAll('.ingredient');
 		if(elements){
 			editIngredientsId(elements);
 		}		
-		element.remove();
-		ingredientsCount--;		
+		element.remove();			
 	}
 
 	$(document).on('click', '#addIngredient', function(e){
-		ingredientsCount++;
-		var button = $(this);
-		var ingredient = button.siblings('.ingredient').last();
+		var ingredient = $(this).siblings('.ingredient').last();
+		if(ingredientsCount=1){
+			
+		}
+		ingredientsCount++
 		addingredient(ingredient, ingredientsCount);
 	});
 
 	$(document).on('click', '.remove_ingredient', function(e){
-		var button = $(this);
-		var id = button.attr('data-id');
+		var id = $(this).attr('data-id');
 
-		console.log(id);
 		if(ingredientsCount>1){
 			removeingredient(id);
-			
+			ingredientsCount--;	
 		}
 	});
 });
