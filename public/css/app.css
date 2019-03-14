@@ -248,11 +248,9 @@ h6 {
 .textfield {
   position: relative;
   height: 56px;
-  min-width: 200px;
-  display: block;
   box-sizing: border-box;
   overflow: visible;
-  margin: 10px 0;
+  margin: 10px;
 }
 
 .textfield input {
@@ -438,6 +436,10 @@ button.action_button {
   padding: 0;
   border: 0;
   outline: none;
+}
+
+[class*=col-] {
+  padding: 0;
 }
 
 header {

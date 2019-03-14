@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$('.textfield input').on('change', function(){
+	$(document).on('change', '.textfield input', function(){
 		var input = $(this);
 		var label = input.siblings('label');
 
@@ -11,10 +11,5 @@ $(document).ready(function() {
 			input.val('');
 		}
 	});	
-
-	$('button').on('click', function(e){
-		e.preventDefault();
-	});
-
-
+	
 });

@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$('button').on('click', function(e){
+	$('button').on('mousedown', function(e){
 		$('.ripple').remove();
 		var button = $(this);
 		var positionleft = 'left:'+((e.pageX - button.offset().left)-50)+'px;';

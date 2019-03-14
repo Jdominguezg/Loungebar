@@ -12,10 +12,14 @@
 	</div>
 	<br>
 	<h3 class="light text_left">A continuación insertaremos los ingredientes y sus cantidades</h3>
-	<div class="ingredients">
-		<div id="ingredient_1" class="textfield">
+	<div class="ingredients row">
+		<div id="ingredient_1" class="textfield ingredient_name col-5">
 			<input type="text" name="recipe_ingredient_1" id="recipe_ingredient_1">
-			<label for="recipe_ingredient_1">Nuevo ingrediente</label>
+			<label for="recipe_ingredient_1">Ingrediente 1</label>
+		</div>
+		<div id="ingredient_1_cuantity" class="textfield ingredient col-3">
+			<input type="number" name="recipe_ingredient_1_cuantity" id="recipe_ingredient_1_cuantity">
+			<label for="recipe_ingredient_1_cuantity">Cantidad</label>
 		</div>
 		<button class="raised_button">Añadir ingrediente</button>
 	</div>
