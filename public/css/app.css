@@ -508,6 +508,7 @@ section.content {
   background-position: center;
   background-size: cover;
   position: relative;
+  overflow: hidden;
 }
 
 .recipe_header .overflow {
@@ -525,8 +526,10 @@ section.content {
   background: transparent;
   position: absolute;
   width: 100%;
-  bottom: 10px;
-  left: 10px;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  padding: 0 15px;
   z-index: 2;
   color: #fff;
 }
@@ -545,6 +548,15 @@ section.content {
 
 .recipe_title::placeholder {
   color: #fff;
+}
+
+.text_characters {
+  position: absolute;
+  bottom: 125px;
+  font-size: 12px;
+  padding: 0 15px;
+  color: #fff;
+  z-index: 2;
 }
 
 .recipe_form {

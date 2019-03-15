@@ -8,7 +8,8 @@
 require('./bootstrap');
 require('./ripple.js');
 require('./forms.js');
-require('./addrecipe.js');
+require('./addrecipe2.js')
+// require('./addrecipe.js');
 
 // Comented
 // window.Vue = require('vue');
