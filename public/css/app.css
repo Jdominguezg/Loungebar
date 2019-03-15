@@ -509,6 +509,8 @@ section.content {
   background-size: cover;
   position: relative;
   overflow: hidden;
+  color: #fff;
+  padding: 0 15px;
 }
 
 .recipe_header .overflow {
@@ -526,16 +528,18 @@ section.content {
   background: transparent;
   position: absolute;
   width: 100%;
+  height: 76px;
   bottom: 50px;
   left: 0;
-  width: 100%;
-  padding: 0 15px;
   z-index: 2;
-  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 textarea.recipe_title {
   resize: none;
+  padding: 0 15px;
+  color: #fff;
 }
 
 .recipe_title::-webkit-input-placeholder {
@@ -558,12 +562,46 @@ textarea.recipe_title {
   position: absolute;
   bottom: 125px;
   font-size: 12px;
-  padding: 0 15px;
-  color: #fff;
   z-index: 2;
 }
 
-.recipe_form {
-  margin: 10px 0;
+.recipe_header .user_info {
+  position: absolute;
+  height: 56px;
+  width: 100%;
+  max-width: 350px;
+  padding: 5px 0;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  z-index: 2;
+  bottom: 0;
+}
+
+.recipe_header .user_info [class*=user_] {
+  margin: 0 10px;
+}
+
+.recipe_header .user_info a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.user_info .user_avatar {
+  height: 46px;
+  width: 46px;
+  border-radius: 50%;
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.user_rate {
+  color: #ffc400;
+}
+
+.recipe_header .user_info .material-icons {
+  font-size: 16px;
 }
 

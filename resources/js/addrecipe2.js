@@ -1,29 +1,25 @@
 $(document).ready(function() {
 
-	actualCharacter = $('.actual_character');
-	count = actualCharacter.html();
+	var maxcharacter = 35;
+	var length = $('.recipe_title').val().length;
+	var placeholder = $('.recipe_title').attr('placeholder');
 	
-	function characterMinus(){
-		actualCharacter--;
-	}
-
-	function characterPlus(){
-		actualCharacter++;
-	}
-
-
-
-	$(document).on('keydown', '.recipe_title', function(e) {
-		var element = $(this);
-		if((e.keyCode == 8 || e.keyCode == 46) && element.val().length > 0 && count < 35){
-			count++;
-			console.log(element.val().length+1);
-			actualCharacter.html(count);
-
-		}else if(e.keyCode != 8 && e.keyCode != 46 && count > 0){
-			count--;
-			console.log(element.val().length+1);
-			actualCharacter.html(count);
+	$(document).on('keyup', '.recipe_title', function(e) {
+		var length = $(this).val().length;
+		if(length <= maxcharacter){
+			$('.actual_character').html(maxcharacter - length);
 		}
 	});
+
+	$(document).on('focus', '.recipe_title', function(e){
+		$(this).attr('placeholder', '');
+	});
+
+	$(document).on('change', '.recipe_title', function(e){
+		if($(this).val() == ''){
+			$(this).attr('placeholder', placeholder);
+		}
+	})
+	
+
 });
