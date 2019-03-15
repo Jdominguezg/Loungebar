@@ -29,6 +29,9 @@
 	z-index: 2;
 	color: #fff;
 }
+textarea.recipe_title{
+	resize: none;
+}
 .recipe_title::placeholder{
 	color: #fff;
 }
