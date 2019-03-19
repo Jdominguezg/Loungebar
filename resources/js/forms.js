@@ -11,5 +11,7 @@ $(document).ready(function() {
 			input.val('');
 		}
 	});	
+
+	$('[data-placeholder]').html($('[data-placeholder]').attr('data-placeholder'));
 	
 });
