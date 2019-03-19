@@ -24,9 +24,7 @@
 			</div>
 		</div>
 
-
 		<div class="recipe_body">
-
 			<div class="recipe_title pointer trigger_modal" data-modal="title_modal" data-placeholder="Click para añadir el título de la receta."></div>
 
 			<div class="modal form" id="title_modal">
@@ -41,7 +39,14 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="recipe_description pointer trigger_modal" data-modal="description_modal" data-placeholder="Click para añadir descripción a la receta."></div>
 			
+			<div class="modal form" id="description_modal">
+				<div class="textfield">
+					<textarea></textarea>
+				</div>
+			</div>
 		</div>
 	</div>
 

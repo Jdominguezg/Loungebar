@@ -20,9 +20,8 @@ $(document).ready(function() {
 		
 	}
 
-	$('.modal.form .accept').on('click', function(event){
-		event.preventDefault();
-		elements = $(this).parent().siblings('.textfield').children('input');
+	function modifyContent(elements){
+		
 		elements.each(function(index) {
 			var input = $(this);
 			var data = input.val();
@@ -39,6 +38,42 @@ $(document).ready(function() {
 				}
 			}		
 		});
+	}
+
+	var keys = { Enter: false, Control: false};
+	$(document).on('keydown keyup', '.modal.form input:last', function(event) {		
+		if(event.type === 'keydown'){
+			if(event.key in keys){
+				keys[event.key] = true;
+				console.log(keys[event.key]);
+				if(keys['Enter'] && keys['Control']){
+
+					$(this).parents('.modal').find('.accept').click();	
+				}
+			}
+		}
+		if(event.type === 'keyup'){
+			if(event.key in keys){
+				keys[event.key] = false;
+			}
+		}
+	});
+
+	$(document).on('keyup', function(event){
+		if($(this).find('.modal.open') && event.key === 'Escape'){
+			if($('.modal.open .cancel').length > 0){
+				$('.modal.open .cancel').click();
+			}else{
+				$('.modal.open').removeClass('open');				
+			}
+		}
+	});
+	
+
+	$('.modal.form .accept').on('click', function(event){
+		event.preventDefault();
+		var elements = $(this).parent().siblings('.textfield').children('input');
+		modifyContent(elements);
 	});
 
 	$('.modal.form .cancel').on('click', function(event){

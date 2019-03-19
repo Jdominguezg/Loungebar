@@ -20,7 +20,9 @@
 }
 .recipe_header .recipe_title{
 	position: absolute;
-
+	display: flex;
+	vertical-align: middle;
+	align-items: center;
 	bottom: 64px;
 	left: 0;
 	width: 100%;
@@ -86,3 +88,6 @@
 	padding: 15px;
 }
 
+.recipe_description{
+	margin: 10px 0;
+}
