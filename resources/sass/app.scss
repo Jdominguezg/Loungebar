@@ -21,6 +21,10 @@
 	outline: none;
 }
 
+ul{
+	padding-inline-start: 40px;
+}
+
 @import 'header.scss';
 @import 'nav.scss';
 @import 'content.scss';

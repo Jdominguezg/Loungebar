@@ -36720,7 +36720,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCharLength", function() { return updateCharLength; });
 // España!!
 $(document).ready(function () {
-  $(document).on('change', '.textfield input', function () {
+  $(document).on('change', '.textfield input, .textfield textarea', function () {
     var input = $(this);
     var label = input.siblings('label');
 
@@ -36773,7 +36773,7 @@ $(document).ready(function () {
   $(document).on('click', '.trigger_modal', function (event) {
     event.preventDefault();
     var modal = $('#' + $(this).attr('data-modal'));
-    var input = modal.find('input').first();
+    var input = modal.find('input, textarea').first();
     modal.addClass('open');
     focusElement(input);
   });
@@ -36812,11 +36812,10 @@ $(document).ready(function () {
     Enter: false,
     Control: false
   };
-  $(document).on('keydown keyup', '.modal.form input:last', function (event) {
+  $(document).on('keydown keyup', '.modal.form input:last, .modal.form textarea:last', function (event) {
     if (event.type === 'keydown') {
       if (event.key in keys) {
         keys[event.key] = true;
-        console.log(keys[event.key]);
 
         if (keys['Enter'] && keys['Control']) {
           $(this).parents('.modal').find('.accept').click();
@@ -36841,12 +36840,12 @@ $(document).ready(function () {
   });
   $('.modal.form .accept').on('click', function (event) {
     event.preventDefault();
-    var elements = $(this).parent().siblings('.textfield').children('input');
+    var elements = $(this).parent().siblings('.textfield').children('input, textarea');
     modifyContent(elements);
   });
   $('.modal.form .cancel').on('click', function (event) {
     event.preventDefault();
-    var elements = $(this).parent().siblings('.textfield').children('input');
+    var elements = $(this).parent().siblings('.textfield').children('input, textarea');
     elements.each(function (index) {
       var input = $(this);
       var data = input.val();

@@ -1,7 +1,7 @@
 // España!!
 $(document).ready(function() {
 
-	$(document).on('change', '.textfield input', function(){
+	$(document).on('change', '.textfield input, .textfield textarea', function(){
 		var input = $(this);
 		var label = input.siblings('label');
 

@@ -20,7 +20,7 @@
 }
 .recipe_header .recipe_title{
 	position: absolute;
-	display: flex;
+    flex-direction: column;
 	vertical-align: middle;
 	align-items: center;
 	bottom: 64px;

@@ -43,10 +43,39 @@
 			<div class="recipe_description pointer trigger_modal" data-modal="description_modal" data-placeholder="Click para añadir descripción a la receta."></div>
 			
 			<div class="modal form" id="description_modal">
-				<div class="textfield">
-					<textarea></textarea>
+				<div class="col-12">
+					<div class="textfield">
+						<textarea id="recipe_description" data-modify name="recipe_description" maxlength="1000"></textarea>
+						<label for="recipe_description">Descripción</label>
+					</div>
+					<div class="righted">
+						<button class="dense_button close_modal cancel"><span>Cancelar</span></button>
+						<button class="raised_button close_modal accept"><span>Aceptar</span></button>
+					</div>
 				</div>
 			</div>
+			
+			<div class="recipe_ingredients">
+				<h3>Ingredientes</h3>
+				<ul list-append class="trigger_modal" data-modal="ingredients_modal">
+					<li class="recipe_ingredient_1" data-placeholder="Click para añadir los ingredientes"></li>
+				</ul>
+			</div>
+
+			<div class="modal form" id="ingredients_modal">
+				<div class="col-12">
+					<div class="textfield">
+						<input type="text" name="recipe_ingredient_1" data-modify id="recipe_ingredient_1" maxlength="100">
+						<label for="recipe_ingredient_1">Ingrediente 1</label>
+					</div>
+					<div class="righted">
+						<button class="dense_button close_modal cancel"><span>Cancelar</span></button>
+						<button class="raised_button close_modal accept"><span>Aceptar</span></button>
+					</div>
+				</div>
+			</div>
+
+
 		</div>
 	</div>
 

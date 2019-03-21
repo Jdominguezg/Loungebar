@@ -1,8 +1,7 @@
 .textfield{
 	position: relative;
-	height: 56px;	
+	min-height: 56px;	
 	box-sizing: border-box;	
-	overflow: visible;
 	margin: 10px 0;
 	display: flex;
 	width: 100%;
@@ -12,7 +11,8 @@
 }
 
 .textfield input,
-.textfield select{
+.textfield select,
+.textfield textarea{
 	width:100%;
 	height: 100%;
 	font-size: 16px;	
@@ -21,8 +21,16 @@
 	border-radius: 4px;	
 	transition: all .15s ease;
 }
+.textfield textarea{
+	height: 250px;
+	min-width: 100%;
+	padding-top: 17px;
+	padding-left: 15px;
+	resize: none;
+}
 .textfield input:not(:focus):hover,
-.textfield select:not(:focus):hover{
+.textfield select:not(:focus):hover,
+.textfield textarea:not(:focus):hover{
 	border: 1px solid $secondary-color;
 }
 .textfield label{
@@ -36,18 +44,21 @@
 	background-color: transparent;
 	cursor: text;
 }
-.textfield input:focus{
+.textfield input:focus,
+.textfield textarea:focus{
 	border: 2px solid $secondary_color;
 }
 
 .textfield label.notEmpty,
-.textfield input:focus + label{
+.textfield input:focus + label,
+.textfield textarea:focus + label{
 	top: -7px;
 	font-size: 12px;
 	padding: 0 4px;
 	background-color: #fff;
 }
 
-.textfield input:focus + label{
+.textfield input:focus + label,
+.textfield textarea:focus + label{
 	color: $secondary_color;
-}
+}	
