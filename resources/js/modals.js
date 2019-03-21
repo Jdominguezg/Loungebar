@@ -1,3 +1,4 @@
+import {updateCharLength} from './forms.js';
 $(document).ready(function() {
 
 	$(document).on('click', '.trigger_modal', function(event) {
@@ -78,7 +79,7 @@ $(document).ready(function() {
 
 	$('.modal.form .cancel').on('click', function(event){
 		event.preventDefault();
-		elements = $(this).parent().siblings('.textfield').children('input');
+		var elements = $(this).parent().siblings('.textfield').children('input');
 		elements.each(function(index) {
 			var input = $(this);
 			var data =  input.val();
@@ -98,6 +99,7 @@ $(document).ready(function() {
 					input.val(prevData).change();					
 				}
 			}
+			updateCharLength(input);
 		});
 
 	});

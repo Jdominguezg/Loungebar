@@ -36712,9 +36712,13 @@ if (token) {
 /*!*******************************!*\
   !*** ./resources/js/forms.js ***!
   \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: updateCharLength */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCharLength", function() { return updateCharLength; });
+// España!!
 $(document).ready(function () {
   $(document).on('change', '.textfield input', function () {
     var input = $(this);
@@ -36727,8 +36731,30 @@ $(document).ready(function () {
       input.val('');
     }
   });
-  $('[data-placeholder]').html($('[data-placeholder]').attr('data-placeholder'));
+  $('.textfield [maxlength]').each(function (index, el) {
+    createCharLength($(this));
+  });
+  $(document).on('keyup', '.textfield [maxlength]', function (e) {
+    updateCharLength($(this));
+  });
+  $('[data-placeholder]').each(function (index, el) {
+    $(this).text($(this).attr('data-placeholder'));
+  });
 });
+
+function createCharLength(element, currentlength, maxlength) {
+  var maxlength = element.attr('maxlength');
+  var currentlength = maxlength - element.val().length;
+  var html = '<div class="text_characters text_right">' + currentlength + '/' + maxlength + '</div>';
+  element.parent().before(html);
+}
+
+function updateCharLength(element) {
+  var maxlength = element.attr('maxlength');
+  var currentlength = maxlength - element.val().length;
+  var html = '<div class="text_characters text_right">' + currentlength + '/' + maxlength + '</div>';
+  element.parent().siblings('.text_characters').html(html);
+}
 
 /***/ }),
 
@@ -36736,8 +36762,12 @@ $(document).ready(function () {
 /*!********************************!*\
   !*** ./resources/js/modals.js ***!
   \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _forms_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forms.js */ "./resources/js/forms.js");
 
 $(document).ready(function () {
   $(document).on('click', '.trigger_modal', function (event) {
@@ -36816,7 +36846,7 @@ $(document).ready(function () {
   });
   $('.modal.form .cancel').on('click', function (event) {
     event.preventDefault();
-    elements = $(this).parent().siblings('.textfield').children('input');
+    var elements = $(this).parent().siblings('.textfield').children('input');
     elements.each(function (index) {
       var input = $(this);
       var data = input.val();
@@ -36838,6 +36868,8 @@ $(document).ready(function () {
           input.val(prevData).change();
         }
       }
+
+      Object(_forms_js__WEBPACK_IMPORTED_MODULE_0__["updateCharLength"])(input);
     });
   });
   $('.close_modal').on('click', function (event) {
@@ -36885,8 +36917,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
