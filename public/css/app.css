@@ -340,7 +340,13 @@ button {
 
 [class*=col-] button,
 [class*=col-] button .material-icons {
-  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.modal .outlined_button {
+  margin: -6px 0 8px;
+  margin-top: -5px;
 }
 
 button .ripple {
@@ -611,6 +617,7 @@ section.content {
 
 .text_characters {
   font-size: 12px;
+  margin-bottom: -12px;
 }
 
 .recipe_header .user_info {

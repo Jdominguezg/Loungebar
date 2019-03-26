@@ -36576,8 +36576,12 @@ module.exports = function(module) {
 /*!************************************!*\
   !*** ./resources/js/addrecipe2.js ***!
   \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _forms_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forms.js */ "./resources/js/forms.js");
 
 $(document).ready(function () {
   var maxcharacter = 35;
@@ -36598,7 +36602,25 @@ $(document).ready(function () {
       $(this).attr('placeholder', placeholder);
     }
   });
+  $(document).on('click', '.add_ingredient', function (e) {
+    var n = $(this).siblings('.textfield').length + 1;
+    var label = $(this).siblings('.textfield').last().children('label').text();
+    createIngredient($(this), n, label);
+  });
 });
+
+function createIngredient(element, n, label) {
+  var id = "recipe_ingredient_" + n;
+  var textfield = _forms_js__WEBPACK_IMPORTED_MODULE_0__["createTextField"](id, id, label, {
+    'data-modify': true,
+    'maxlength': 50
+  });
+  element.before(textfield);
+  _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkMaxLength"]();
+  var ul = $('[list-append]');
+  var html = $('<li class="' + id + '" data-placeholder="Click para añadir los ingredientes"></li>');
+  ul.append(html);
+}
 
 /***/ }),
 
@@ -36712,12 +36734,16 @@ if (token) {
 /*!*******************************!*\
   !*** ./resources/js/forms.js ***!
   \*******************************/
-/*! exports provided: updateCharLength */
+/*! exports provided: checkMaxLength, checkDaraPlaceholder, createCharLength, updateCharLength, createTextField */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkMaxLength", function() { return checkMaxLength; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkDaraPlaceholder", function() { return checkDaraPlaceholder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCharLength", function() { return createCharLength; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCharLength", function() { return updateCharLength; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTextField", function() { return createTextField; });
 // España!!
 $(document).ready(function () {
   $(document).on('change', '.textfield input, .textfield textarea', function () {
@@ -36731,29 +36757,47 @@ $(document).ready(function () {
       input.val('');
     }
   });
-  $('.textfield [maxlength]').each(function (index, el) {
-    createCharLength($(this));
-  });
   $(document).on('keyup', '.textfield [maxlength]', function (e) {
     updateCharLength($(this));
   });
+  checkMaxLength();
+  checkDaraPlaceholder();
+});
+function checkMaxLength() {
+  $('.textfield [maxlength]').each(function (index, el) {
+    createCharLength($(this));
+  });
+}
+function checkDaraPlaceholder() {
   $('[data-placeholder]').each(function (index, el) {
     $(this).text($(this).attr('data-placeholder'));
   });
-});
-
+}
 function createCharLength(element, currentlength, maxlength) {
   var maxlength = element.attr('maxlength');
   var currentlength = maxlength - element.val().length;
   var html = '<div class="text_characters text_right">' + currentlength + '/' + maxlength + '</div>';
   element.parent().before(html);
 }
-
 function updateCharLength(element) {
   var maxlength = element.attr('maxlength');
   var currentlength = maxlength - element.val().length;
   var html = '<div class="text_characters text_right">' + currentlength + '/' + maxlength + '</div>';
   element.parent().siblings('.text_characters').html(html);
+}
+function createTextField(id, name) {
+  var label = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  var atributes = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+  var type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'text';
+  var textfield = $('<div class="textfield">' + '<input type="' + type + '" name="' + name + '" id="' + id + '">' + '<label for="' + name + '">' + label + '</label>' + '</div>');
+
+  if (atributes) {
+    $.each(atributes, function (index, val) {
+      textfield.children('input').attr(index, val);
+    });
+  }
+
+  return textfield;
 }
 
 /***/ }),
@@ -36780,33 +36824,7 @@ $(document).ready(function () {
   $(document).on('click', '.modal + overflow', function (event) {
     event.preventDefault();
     $(this).siblings('.modal').removeClass('open');
-  });
-
-  function focusElement(e) {
-    setTimeout(function () {
-      e.focus();
-    }, 100);
-  }
-
-  function modifyContent(elements) {
-    elements.each(function (index) {
-      var input = $(this);
-      var data = input.val();
-
-      if (input.is('[data-modify]')) {
-        var id = input.attr('id');
-
-        if (data.trim() != '') {
-          $('.' + id).text(data);
-          input.attr('data-prev-val', data);
-        } else {
-          $('.' + id).text($('.' + id).attr('data-placeholder'));
-          input.val('').change();
-          input.attr('data-prev-val', data);
-        }
-      }
-    });
-  }
+  }); //Controla que al pulsar control + Enter se presiona el botón aceptar
 
   var keys = {
     Enter: false,
@@ -36868,7 +36886,7 @@ $(document).ready(function () {
         }
       }
 
-      Object(_forms_js__WEBPACK_IMPORTED_MODULE_0__["updateCharLength"])(input);
+      _forms_js__WEBPACK_IMPORTED_MODULE_0__["updateCharLength"](input);
     });
   });
   $('.close_modal').on('click', function (event) {
@@ -36876,6 +36894,32 @@ $(document).ready(function () {
   });
   $('.modal').after('<overflow></overflow>');
 });
+
+function focusElement(e) {
+  setTimeout(function () {
+    e.focus();
+  }, 100);
+}
+
+function modifyContent(elements) {
+  elements.each(function (index) {
+    var input = $(this);
+    var data = input.val();
+
+    if (input.is('[data-modify]')) {
+      var id = input.attr('id');
+
+      if (data.trim() != '') {
+        $('.' + id).text(data);
+        input.attr('data-prev-val', data);
+      } else {
+        $('.' + id).text($('.' + id).attr('data-placeholder'));
+        input.val('').change();
+        input.attr('data-prev-val', data);
+      }
+    }
+  });
+}
 
 /***/ }),
 
@@ -36916,8 +36960,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
