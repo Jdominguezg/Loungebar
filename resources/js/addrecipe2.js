@@ -35,9 +35,11 @@ function createIngredient(element,n, label){
 	var textfield = form.createTextField(id, id, label, {'data-modify': true, 'maxlength':50});
 
 	element.before(textfield);
+	form.focusElement($('#'+id));
 	form.checkMaxLength();
 
 	var ul = $('[list-append]');	
 	var html = $('<li class="'+id+'" data-placeholder="Click para añadir los ingredientes"></li>');
 	ul.append(html);
+	form.checkDataPlaceholder();
 }

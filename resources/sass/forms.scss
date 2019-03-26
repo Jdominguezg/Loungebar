@@ -2,7 +2,7 @@
 	position: relative;
 	min-height: 56px;	
 	box-sizing: border-box;	
-	margin: 10px 0;
+	margin: 5px 0 10px;
 	display: flex;
 	width: 100%;
 	vertical-align: middle;
@@ -62,3 +62,7 @@
 .textfield textarea:focus + label{
 	color: $secondary_color;
 }	
+.text_characters{	
+	font-size: 12px;
+	margin-bottom: -5px;
+}

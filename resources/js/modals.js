@@ -7,7 +7,10 @@ $(document).ready(function() {
 		var modal = $('#'+$(this).attr('data-modal'));
 		var input = modal.find('input, textarea').first();
 		modal.addClass('open');
-		focusElement(input);
+		setTimeout(function(){
+			form.focusElement(input);
+		}, 100)
+		
 	});
 
 	$(document).on('click', '.modal + overflow', function(event){
@@ -85,16 +88,6 @@ $('.close_modal').on('click', function(event){
 $('.modal').after('<overflow></overflow>');
 
 });
-
-
-
-function focusElement(e){
-	setTimeout(function(){
-		e.focus();
-	}, 100);
-}
-
-
 
 function modifyContent(elements){
 

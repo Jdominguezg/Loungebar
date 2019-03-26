@@ -36616,10 +36616,12 @@ function createIngredient(element, n, label) {
     'maxlength': 50
   });
   element.before(textfield);
+  _forms_js__WEBPACK_IMPORTED_MODULE_0__["focusElement"]($('#' + id));
   _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkMaxLength"]();
   var ul = $('[list-append]');
   var html = $('<li class="' + id + '" data-placeholder="Click para añadir los ingredientes"></li>');
   ul.append(html);
+  _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
 }
 
 /***/ }),
@@ -36734,16 +36736,17 @@ if (token) {
 /*!*******************************!*\
   !*** ./resources/js/forms.js ***!
   \*******************************/
-/*! exports provided: checkMaxLength, checkDaraPlaceholder, createCharLength, updateCharLength, createTextField */
+/*! exports provided: checkMaxLength, checkDataPlaceholder, createCharLength, updateCharLength, createTextField, focusElement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkMaxLength", function() { return checkMaxLength; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkDaraPlaceholder", function() { return checkDaraPlaceholder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkDataPlaceholder", function() { return checkDataPlaceholder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCharLength", function() { return createCharLength; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCharLength", function() { return updateCharLength; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTextField", function() { return createTextField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "focusElement", function() { return focusElement; });
 // España!!
 $(document).ready(function () {
   $(document).on('change', '.textfield input, .textfield textarea', function () {
@@ -36761,14 +36764,14 @@ $(document).ready(function () {
     updateCharLength($(this));
   });
   checkMaxLength();
-  checkDaraPlaceholder();
+  checkDataPlaceholder();
 });
 function checkMaxLength() {
   $('.textfield [maxlength]').each(function (index, el) {
     createCharLength($(this));
   });
 }
-function checkDaraPlaceholder() {
+function checkDataPlaceholder() {
   $('[data-placeholder]').each(function (index, el) {
     $(this).text($(this).attr('data-placeholder'));
   });
@@ -36777,13 +36780,16 @@ function createCharLength(element, currentlength, maxlength) {
   var maxlength = element.attr('maxlength');
   var currentlength = maxlength - element.val().length;
   var html = '<div class="text_characters text_right">' + currentlength + '/' + maxlength + '</div>';
-  element.parent().before(html);
+
+  if (!element.parent().prev('.text_characters').length) {
+    element.parent().before(html);
+  }
 }
 function updateCharLength(element) {
   var maxlength = element.attr('maxlength');
   var currentlength = maxlength - element.val().length;
   var html = '<div class="text_characters text_right">' + currentlength + '/' + maxlength + '</div>';
-  element.parent().siblings('.text_characters').html(html);
+  element.parent().prev('.text_characters').html(html);
 }
 function createTextField(id, name) {
   var label = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
@@ -36798,6 +36804,9 @@ function createTextField(id, name) {
   }
 
   return textfield;
+}
+function focusElement(e) {
+  e.focus();
 }
 
 /***/ }),
@@ -36819,7 +36828,9 @@ $(document).ready(function () {
     var modal = $('#' + $(this).attr('data-modal'));
     var input = modal.find('input, textarea').first();
     modal.addClass('open');
-    focusElement(input);
+    setTimeout(function () {
+      _forms_js__WEBPACK_IMPORTED_MODULE_0__["focusElement"](input);
+    }, 100);
   });
   $(document).on('click', '.modal + overflow', function (event) {
     event.preventDefault();
@@ -36894,12 +36905,6 @@ $(document).ready(function () {
   });
   $('.modal').after('<overflow></overflow>');
 });
-
-function focusElement(e) {
-  setTimeout(function () {
-    e.focus();
-  }, 100);
-}
 
 function modifyContent(elements) {
   elements.each(function (index) {

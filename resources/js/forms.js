@@ -18,7 +18,7 @@ $(document).ready(function() {
 	});
 
 	checkMaxLength();
-	checkDaraPlaceholder();
+	checkDataPlaceholder();
 	
 });
 
@@ -28,7 +28,7 @@ export function checkMaxLength(){
 	});
 }
 
-export function checkDaraPlaceholder(){
+export function checkDataPlaceholder(){
 	$('[data-placeholder]').each(function(index, el) {
 		$(this).text($(this).attr('data-placeholder'));
 	});
@@ -38,14 +38,17 @@ export function createCharLength(element, currentlength, maxlength){
 	var maxlength = element.attr('maxlength');
 	var currentlength = maxlength - element.val().length;
 	var html = '<div class="text_characters text_right">'+currentlength+'/'+maxlength+'</div>';
-	element.parent().before(html);
+	if(!element.parent().prev('.text_characters').length){
+		element.parent().before(html);
+	}
+	
 }
 
 export function updateCharLength(element){
 	var maxlength = element.attr('maxlength');
 	var currentlength = maxlength - element.val().length;
 	var html = '<div class="text_characters text_right">'+currentlength+'/'+maxlength+'</div>';
-	element.parent().siblings('.text_characters').html(html);
+	element.parent().prev('.text_characters').html(html);
 }
 
 export function createTextField(id, name, label = '', atributes = 0, type = 'text'){
@@ -59,4 +62,8 @@ export function createTextField(id, name, label = '', atributes = 0, type = 'tex
 		});
 	}
 	return textfield;
+}
+
+export function focusElement(e){	
+	e.focus();
 }
