@@ -1,4 +1,7 @@
 import * as form from './forms.js';
+
+//TODO REMOVE INGREDIETNS
+
 $(document).ready(function() {
 
 	var maxcharacter = 35;
@@ -42,4 +45,8 @@ function createIngredient(element,n, label){
 	var html = $('<li class="'+id+'" data-placeholder="Click para añadir los ingredientes"></li>');
 	ul.append(html);
 	form.checkDataPlaceholder();
+}
+
+function removeIngredient(id){
+	
 }

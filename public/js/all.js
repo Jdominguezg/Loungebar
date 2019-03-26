@@ -36582,6 +36582,7 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _forms_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forms.js */ "./resources/js/forms.js");
+ //TODO REMOVE INGREDIETNS
 
 $(document).ready(function () {
   var maxcharacter = 35;
@@ -36623,6 +36624,8 @@ function createIngredient(element, n, label) {
   ul.append(html);
   _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
 }
+
+function removeIngredient(id) {}
 
 /***/ }),
 
