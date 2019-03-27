@@ -30,7 +30,9 @@ export function checkMaxLength(){
 
 export function checkDataPlaceholder(){
 	$('[data-placeholder]').each(function(index, el) {
-		$(this).text($(this).attr('data-placeholder'));
+		if($(this).text() == ''){
+			$(this).text($(this).attr('data-placeholder'));
+		}
 	});
 }
 
@@ -53,9 +55,9 @@ export function updateCharLength(element){
 
 export function createTextField(id, name, label = '', atributes = 0, type = 'text'){
 	var textfield = $('<div class="textfield">'+
-						'<input type="'+type+'" name="'+name+'" id="'+id+'">'+
-						'<label for="'+name+'">'+label+'</label>'+
-					'</div>');
+		'<input type="'+type+'" name="'+name+'" id="'+id+'">'+
+		'<label for="'+name+'">'+label+'</label>'+
+		'</div>');
 	if(atributes){
 		$.each(atributes, function(index, val) {
 			textfield.children('input').attr(index, val);

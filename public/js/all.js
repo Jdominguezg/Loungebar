@@ -36577,55 +36577,9 @@ module.exports = function(module) {
   !*** ./resources/js/addrecipe2.js ***!
   \************************************/
 /*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _forms_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forms.js */ "./resources/js/forms.js");
- //TODO REMOVE INGREDIETNS
-
-$(document).ready(function () {
-  var maxcharacter = 35;
-  var length = $('.recipe_title').val().length;
-  var placeholder = $('.recipe_title').attr('placeholder');
-  $(document).on('keyup', '.recipe_title', function (e) {
-    var length = $(this).val().length;
-
-    if (length <= maxcharacter) {
-      $('.actual_character').html(maxcharacter - length);
-    }
-  });
-  $(document).on('focus', '.recipe_title', function (e) {
-    $(this).attr('placeholder', '');
-  });
-  $(document).on('change', '.recipe_title', function (e) {
-    if ($(this).val() == '') {
-      $(this).attr('placeholder', placeholder);
-    }
-  });
-  $(document).on('click', '.add_ingredient', function (e) {
-    var n = $(this).siblings('.textfield').length + 1;
-    var label = $(this).siblings('.textfield').last().children('label').text();
-    createIngredient($(this), n, label);
-  });
-});
-
-function createIngredient(element, n, label) {
-  var id = "recipe_ingredient_" + n;
-  var textfield = _forms_js__WEBPACK_IMPORTED_MODULE_0__["createTextField"](id, id, label, {
-    'data-modify': true,
-    'maxlength': 50
-  });
-  element.before(textfield);
-  _forms_js__WEBPACK_IMPORTED_MODULE_0__["focusElement"]($('#' + id));
-  _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkMaxLength"]();
-  var ul = $('[list-append]');
-  var html = $('<li class="' + id + '" data-placeholder="Click para añadir los ingredientes"></li>');
-  ul.append(html);
-  _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
-}
-
-function removeIngredient(id) {}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/dymcanarias/Documents/GitHub/Loungebar/resources/js/addrecipe2.js: Unexpected token (61:29)\n\n\u001b[0m \u001b[90m 59 | \u001b[39m\t\u001b[36mvar\u001b[39m textfields \u001b[33m=\u001b[39m $(\u001b[32m'#ingredients_modal .textfield'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 60 | \u001b[39m\t\u001b[36mvar\u001b[39m textCharacters \u001b[33m=\u001b[39m $(\u001b[32m'#ingredients_modal .text_characters'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 61 | \u001b[39m\t\u001b[36mif\u001b[39m(textfields\u001b[33m.\u001b[39mlength \u001b[33m>\u001b[39m \u001b[35m1\u001b[39m \u001b[33m&&\u001b[39m ){\t\t\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m\t                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 62 | \u001b[39m\t\tconsole\u001b[33m.\u001b[39mlog(\u001b[32m'ok'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 63 | \u001b[39m\t}\u001b[0m\n\u001b[0m \u001b[90m 64 | \u001b[39m}\u001b[33m;\u001b[39m\u001b[0m\n    at Parser.raise (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:3831:17)\n    at Parser.unexpected (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5143:16)\n    at Parser.parseExprAtom (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:6283:20)\n    at Parser.parseExprSubscripts (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5862:23)\n    at Parser.parseMaybeUnary (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5842:21)\n    at Parser.parseExprOpBaseRightExpr (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5802:34)\n    at Parser.parseExprOpRightExpr (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5795:21)\n    at Parser.parseExprOp (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5774:27)\n    at Parser.parseExprOp (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5776:21)\n    at Parser.parseExprOps (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5739:17)\n    at Parser.parseMaybeConditional (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5702:23)\n    at Parser.parseMaybeAssign (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5647:21)\n    at Parser.parseExpression (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:5595:23)\n    at Parser.parseParenExpression (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:6386:22)\n    at Parser.parseIfStatement (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7601:22)\n    at Parser.parseStatementContent (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7292:21)\n    at Parser.parseStatement (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7243:17)\n    at Parser.parseBlockOrModuleBlockBody (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7810:25)\n    at Parser.parseBlockBody (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7797:10)\n    at Parser.parseBlock (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7786:10)\n    at Parser.parseFunctionBody (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:6876:24)\n    at Parser.parseFunctionBodyAndFinish (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:6860:10)\n    at withTopicForbiddingContext (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7945:12)\n    at Parser.withTopicForbiddingContext (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7150:14)\n    at Parser.parseFunction (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7944:10)\n    at Parser.parseFunctionStatement (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7596:17)\n    at Parser.parseStatementContent (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7278:31)\n    at Parser.parseStatement (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7243:17)\n    at Parser.parseBlockOrModuleBlockBody (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7810:25)\n    at Parser.parseBlockBody (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7797:10)\n    at Parser.parseTopLevel (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:7181:10)\n    at Parser.parse (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:8660:17)\n    at parse (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/parser/lib/index.js:10660:38)\n    at parser (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\n    at normalizeFile (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\n    at runSync (/Users/dymcanarias/Documents/GitHub/Loungebar/node_modules/@babel/core/lib/transformation/index.js:44:43)");
 
 /***/ }),
 
@@ -36776,7 +36730,9 @@ function checkMaxLength() {
 }
 function checkDataPlaceholder() {
   $('[data-placeholder]').each(function (index, el) {
-    $(this).text($(this).attr('data-placeholder'));
+    if ($(this).text() == '') {
+      $(this).text($(this).attr('data-placeholder'));
+    }
   });
 }
 function createCharLength(element, currentlength, maxlength) {
@@ -36968,8 +36924,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/orion/Escritorio/Proyectos Web/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

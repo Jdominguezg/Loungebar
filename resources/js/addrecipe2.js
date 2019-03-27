@@ -36,10 +36,13 @@ $(document).ready(function() {
 function createIngredient(element,n, label){
 	var id = "recipe_ingredient_"+n;
 	var textfield = form.createTextField(id, id, label, {'data-modify': true, 'maxlength':50});
+	
 
 	element.before(textfield);
 	form.focusElement($('#'+id));
 	form.checkMaxLength();
+
+	toggleDeleteButton();
 
 	var ul = $('[list-append]');	
 	var html = $('<li class="'+id+'" data-placeholder="Click para añadir los ingredientes"></li>');
@@ -50,3 +53,18 @@ function createIngredient(element,n, label){
 function removeIngredient(id){
 	
 }
+
+function toggleDeleteButton(){
+	var deletebutton = $('<button class="dense_button remove_ingredient"><span><i class="material-icons">delete</i></span></button>');
+	var textfields = $('#ingredients_modal .textfield');
+	var textCharacters = $('#ingredients_modal .text_characters');
+	if(textfields.length > 1 && ){		
+		console.log('ok');
+	}
+};
+
+
+
+
+
+

@@ -63,7 +63,7 @@
 			</div>
 
 			<div class="modal form open" id="ingredients_modal">
-				<div class="col-12">
+				<div class="col-12 modal_container">
 					<div class="textfield">
 						<input type="text" name="recipe_ingredient_1" data-modify id="recipe_ingredient_1" maxlength="50">
 						<label for="recipe_ingredient_1">Cantidad e ingrediente</label>
