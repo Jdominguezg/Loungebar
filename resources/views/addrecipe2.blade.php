@@ -11,6 +11,10 @@
 			<div class="overflow"></div>
 
 			<div class="recipe_title pointer trigger_modal" data-modal="title_modal" data-placeholder="Click para añadir el título de la receta."></div>
+			<div class="recipe_duration">
+				<i class="material-icons">access_time</i>
+				<span class="recipe_duration_time pointer trigger_modal" data-modal="title_modal" data-placeholder="Click para añadir la duración de la receta."></span>
+			</div>
 			<div class="user_info">
 				<div class="user_avatar" style="background-image: url({{ asset('imgs/user.png') }})"></div>
 				<div class="user_name"><a href="#">@Pepe_el_cojo</a></div>
@@ -32,6 +36,10 @@
 					<div class="textfield">
 						<input type="text" name="recipe_title" data-modify id="recipe_title" maxlength="100">
 						<label for="recipe_title">Título</label>
+					</div>
+					<div class="textfield">
+						<input type="number" max="48"  min="0" name="recipe_duration_time" id="recipe_duration_time">
+						<label for="recipe_duration_time">Horas</label>
 					</div>
 					<div class="righted">
 						<button class="dense_button close_modal cancel"><span>Cancelar</span></button>
@@ -62,7 +70,7 @@
 				</ul>
 			</div>
 
-			<div class="modal form open" id="ingredients_modal">
+			<div class="modal form" id="ingredients_modal">
 				<div class="col-12 modal_container">
 					<div class="textfield">
 						<input type="text" name="recipe_ingredient_1" data-modify id="recipe_ingredient_1" maxlength="50">
