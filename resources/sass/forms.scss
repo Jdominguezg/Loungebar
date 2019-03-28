@@ -8,6 +8,7 @@
 	vertical-align: middle;
 	align-items: center;
 	justify-content: center;
+	transition: all .15s ease;
 }
 
 .textfield input,
@@ -65,4 +66,5 @@
 .text_characters{	
 	font-size: 12px;
 	margin-bottom: -5px;
+	transition: all .15s ease;
 }

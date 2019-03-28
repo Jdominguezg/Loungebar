@@ -31,6 +31,11 @@ $(document).ready(function() {
 		createIngredient($(this), n, label);
 	});
 
+	$(document).on('click', '.remove_ingredient', function(e){
+		
+		removeIngredient($(this).parent());
+	});
+
 });
 
 function createIngredient(element,n, label){
@@ -42,7 +47,7 @@ function createIngredient(element,n, label){
 	form.focusElement($('#'+id));
 	form.checkMaxLength();
 
-	toggleDeleteButton();
+	addDeleteButton();
 
 	var ul = $('[list-append]');	
 	var html = $('<li class="'+id+'" data-placeholder="Click para añadir los ingredientes"></li>');
@@ -50,17 +55,59 @@ function createIngredient(element,n, label){
 	form.checkDataPlaceholder();
 }
 
-function removeIngredient(id){
+function removeIngredient(ingredient){
+	// var textfields = ingredient.siblings('.textfield.delete');
+	// var id = ingredient.children('input').attr('id');
+	// ingredient.prev('.text_characters.delete').remove();
+	// $('.'+id).remove();
+	// ingredient.remove();
+	// if(textfields.length == 1){
+	// 	$('.remove_ingredient').remove();
+	// 	$('.textfield.delete input').attr({
+	// 		name: 'recipe_ingredient_1',
+	// 		id: 'recipe_ingredient_1'
+	// 	});
+	// 	$('.textfield.delete label').attr('for', 'recipe_ingredient_1');
+	// 	$('.textfield.delete').removeClass('delete');
+	// 	$('.text_characters.delete').removeClass('delete');
+	// }
+	// 
 	
+	var id = ingredient.children('input').attr('id');
+	$('.'+id).remove();
+	ingredient.prev('.text_characters.delete').remove();
+
+	var nextsTextfields = ingredient.nextAll('.textfield');
+	var nextsInputs = nextsTextfields.children('input');
+	nextsInputs.each(function(index, el) {
+		var id = $(this).attr('id');
+		var shortid = id[id.length-1];
+		shortid--;
+		$(this).attr({
+			name: 'recipe_ingredient_'+shortid,
+			id: 'recipe_ingredient_'+shortid
+		});
+		$('.'+id).addClass('recipe_ingredient_'+shortid).removeClass(id);
+		$(this).siblings('label').attr('for', 'recipe_ingredient_'+shortid);
+		if(nextsTextfields.length == 1){
+			$('.remove_ingredient').remove();
+			$(this).parent().removeClass('delete');
+			$(this).parent().prev('.text_characters.delete').removeClass('delete');
+		}
+	});	
+	
+	ingredient.remove();
 }
 
-function toggleDeleteButton(){
+function addDeleteButton(){
 	var deletebutton = $('<button class="dense_button remove_ingredient"><span><i class="material-icons">delete</i></span></button>');
-	var textfields = $('#ingredients_modal .textfield');
-	var textCharacters = $('#ingredients_modal .text_characters');
-	if(textfields.length > 1 && ){		
-		console.log('ok');
-	}
+	var textfields = $('#ingredients_modal .textfield').not('.delete');
+	var textCharacters = $('#ingredients_modal .text_characters').not('.delete');
+
+	textfields.addClass('delete');
+	textfields.append(deletebutton);
+	textCharacters.addClass('delete');
+	
 };
 
 

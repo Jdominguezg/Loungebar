@@ -37,9 +37,10 @@
 
 #ingredients_modal .textfield.delete input,
 #ingredients_modal .text_characters.delete{
-	width: calc(100% - 48px);
+	width: calc(100% - 64px);
 }
-#ingredients_modal .remove_ingredient{
-	min-width: unset;
-	width: 48px;
+
+#ingredients_modal .remove_ingredient .material-icons{
+	font-size: 24px;
+	color: rgba(0,0,0,0.6);
 }

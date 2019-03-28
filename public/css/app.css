@@ -255,6 +255,7 @@ h6 {
   vertical-align: middle;
   align-items: center;
   justify-content: center;
+  transition: all 0.15s ease;
 }
 
 .textfield input,
@@ -317,6 +318,7 @@ h6 {
 .text_characters {
   font-size: 12px;
   margin-bottom: -5px;
+  transition: all 0.15s ease;
 }
 
 button {
@@ -503,12 +505,12 @@ button.action_button {
 
 #ingredients_modal .textfield.delete input,
 #ingredients_modal .text_characters.delete {
-  width: calc(100% - 48px);
+  width: calc(100% - 64px);
 }
 
-#ingredients_modal .remove_ingredient {
-  min-width: unset;
-  width: 48px;
+#ingredients_modal .remove_ingredient .material-icons {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 * {
