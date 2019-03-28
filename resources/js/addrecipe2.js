@@ -89,14 +89,17 @@ function removeIngredient(ingredient){
 		});
 		$('.'+id).addClass('recipe_ingredient_'+shortid).removeClass(id);
 		$(this).siblings('label').attr('for', 'recipe_ingredient_'+shortid);
-		if(nextsTextfields.length == 1){
-			$('.remove_ingredient').remove();
-			$(this).parent().removeClass('delete');
-			$(this).parent().prev('.text_characters.delete').removeClass('delete');
-		}
+		
 	});	
 	
 	ingredient.remove();
+
+	var ingredietns = $('#ingredeints_modal .textfield.delete');
+	if(ingredients.length == 1){
+		$('.remove_ingredient').remove();
+		ingredients.removeClass('delete');
+		ingredients.prev('.text_characters.delete').removeClass('delete');
+	}
 }
 
 function addDeleteButton(){
