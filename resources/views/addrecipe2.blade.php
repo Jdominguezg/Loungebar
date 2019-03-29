@@ -11,9 +11,9 @@
 			<div class="overflow"></div>
 
 			<div class="recipe_title pointer trigger_modal" data-modal="title_modal" data-placeholder="Click para añadir el título de la receta."></div>
-			<div class="recipe_duration">
+			<div class="recipe_duration trigger_modal" data-modal="title_modal">
 				<i class="material-icons">access_time</i>
-				<span class="recipe_duration_time pointer trigger_modal" data-modal="title_modal" data-placeholder="Click para añadir la duración de la receta."></span>
+				<span style="margin:0 5px" class="recipe_duration_time_hours pointer" data-placeholder="Click para añadir la duración de la receta."></span><span style="margin: 0 5px" class="recipe_duration_time_minutes"></span>
 			</div>
 			<div class="user_info">
 				<div class="user_avatar" style="background-image: url({{ asset('imgs/user.png') }})"></div>
@@ -37,10 +37,17 @@
 						<input type="text" name="recipe_title" data-modify id="recipe_title" maxlength="100">
 						<label for="recipe_title">Título</label>
 					</div>
+					
 					<div class="textfield">
-						<input type="number" max="48"  min="0" name="recipe_duration_time" id="recipe_duration_time">
-						<label for="recipe_duration_time">Horas</label>
+						<input type="number" max="48"  min="0" data-modify name="recipe_duration_time_hours" id="recipe_duration_time_hours">
+						<label for="recipe_duration_time_hours">Horas</label>
 					</div>
+					<div class="textfield">
+						<input type="number" max="59"  min="0" data-modify name="recipe_duration_time_minutes" id="recipe_duration_time_minutes">
+						<label for="recipe_duration_time_minutes">Minutos</label>
+					</div>
+					
+					
 					<div class="righted">
 						<button class="dense_button close_modal cancel"><span>Cancelar</span></button>
 						<button class="raised_button close_modal accept"><span>Aceptar</span></button>

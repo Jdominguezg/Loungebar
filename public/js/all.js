@@ -36603,6 +36603,36 @@ $(document).ready(function () {
       $(this).attr('placeholder', placeholder);
     }
   });
+  $(document).on('click', '#title_modal .accept', function (e) {
+    var hours = $('#recipe_duration_time_hours').val();
+    var minutes = $('#recipe_duration_time_minutes').val();
+
+    if (minutes < 0) {
+      minutes = 0;
+      $('#recipe_duration_time_minutes').val(minutes);
+      $('#recipe_duration_time_minutes').attr('data-prev-val', minutes);
+    }
+
+    if (minutes > 59) {
+      minutes = 59;
+      $('#recipe_duration_time_minutes').val(minutes);
+      $('#recipe_duration_time_minutes').attr('data-prev-val', minutes);
+    }
+
+    if (hours < 0) {
+      hours = 0;
+      $('#recipe_duration_time_hours').val(hours);
+      $('#recipe_duration_time_hours').attr('data-prev-val', hours);
+    }
+
+    if (hours > 48) {
+      hours = 48;
+      $('#recipe_duration_time_hours').val(hours);
+      $('#recipe_duration_time_hours').attr('data-prev-val', hours);
+    }
+
+    recipeTime(hours, minutes);
+  });
   $(document).on('click', '.add_ingredient', function (e) {
     var n = $(this).siblings('.textfield').length + 1;
     var label = $(this).siblings('.textfield').last().children('label').text();
@@ -36630,22 +36660,6 @@ function createIngredient(element, n, label) {
 }
 
 function removeIngredient(ingredient) {
-  // var textfields = ingredient.siblings('.textfield.delete');
-  // var id = ingredient.children('input').attr('id');
-  // ingredient.prev('.text_characters.delete').remove();
-  // $('.'+id).remove();
-  // ingredient.remove();
-  // if(textfields.length == 1){
-  // 	$('.remove_ingredient').remove();
-  // 	$('.textfield.delete input').attr({
-  // 		name: 'recipe_ingredient_1',
-  // 		id: 'recipe_ingredient_1'
-  // 	});
-  // 	$('.textfield.delete label').attr('for', 'recipe_ingredient_1');
-  // 	$('.textfield.delete').removeClass('delete');
-  // 	$('.text_characters.delete').removeClass('delete');
-  // }
-  // 
   var id = ingredient.children('input').attr('id');
   $('.' + id).remove();
   ingredient.prev('.text_characters.delete').remove();
@@ -36681,7 +36695,26 @@ function addDeleteButton() {
   textCharacters.addClass('delete');
 }
 
-;
+function recipeTime() {
+  var hours = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var minutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+  if (hours > 0) {
+    if (hours > 1) {
+      $('.recipe_duration_time_hours').text(hours + ' horas');
+    } else {
+      $('.recipe_duration_time_hours').text(hours + ' hora');
+    }
+  }
+
+  if (minutes > 0) {
+    if (minutes > 1) {
+      $('.recipe_duration_time_minutes').text(minutes + ' minutos');
+    } else {
+      $('.recipe_duration_time_minutes').text(minutes + ' minuto');
+    }
+  }
+}
 
 /***/ }),
 
