@@ -36648,7 +36648,7 @@ $(document).ready(function () {
 function createIngredient(element, n, label) {
   var id = "recipe_ingredient_" + n;
   var textfield = _forms_js__WEBPACK_IMPORTED_MODULE_0__["createTextField"](id, id, label, {
-    'data-modify': true,
+    'data-modify': '',
     'maxlength': 50
   });
   element.before(textfield);
@@ -36679,7 +36679,7 @@ function removeIngredient(ingredient) {
     $(this).siblings('label').attr('for', 'recipe_ingredient_' + shortid);
   });
   ingredient.remove();
-  var ingredietns = $('#ingredeints_modal .textfield.delete');
+  var ingredients = $('#ingredients_modal .textfield.delete');
 
   if (ingredients.length == 1) {
     $('.remove_ingredient').remove();
@@ -36693,8 +36693,8 @@ function addDeleteButton() {
   var textfields = $('#ingredients_modal .textfield').not('.delete');
   var textCharacters = $('#ingredients_modal .text_characters').not('.delete');
   textfields.addClass('delete');
-  textfields.append(deletebutton);
   textCharacters.addClass('delete');
+  textfields.append(deletebutton);
 }
 
 function recipeTime() {
@@ -36878,7 +36878,7 @@ function checkDataPlaceholder() {
 function createCharLength(element, currentlength, maxlength) {
   var maxlength = element.attr('maxlength');
   var currentlength = maxlength - element.val().length;
-  var html = '<div class="text_characters text_right">' + currentlength + '/' + maxlength + '</div>';
+  var html = $('<div class="text_characters text_right">' + currentlength + '/' + maxlength + '</div>');
 
   if (!element.parent().prev('.text_characters').length) {
     element.parent().before(html);
@@ -36887,8 +36887,8 @@ function createCharLength(element, currentlength, maxlength) {
 function updateCharLength(element) {
   var maxlength = element.attr('maxlength');
   var currentlength = maxlength - element.val().length;
-  var html = '<div class="text_characters text_right">' + currentlength + '/' + maxlength + '</div>';
-  element.parent().prev('.text_characters').html(html);
+  var text = currentlength + '/' + maxlength;
+  element.parent().prev('.text_characters').text(text);
 }
 function createTextField(id, name) {
   var label = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';

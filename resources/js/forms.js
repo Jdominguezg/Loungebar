@@ -39,7 +39,8 @@ export function checkDataPlaceholder(){
 export function createCharLength(element, currentlength, maxlength){
 	var maxlength = element.attr('maxlength');
 	var currentlength = maxlength - element.val().length;
-	var html = '<div class="text_characters text_right">'+currentlength+'/'+maxlength+'</div>';
+	var html = $('<div class="text_characters text_right">'+currentlength+'/'+maxlength+'</div>');
+
 	if(!element.parent().prev('.text_characters').length){
 		element.parent().before(html);
 	}
@@ -49,8 +50,8 @@ export function createCharLength(element, currentlength, maxlength){
 export function updateCharLength(element){
 	var maxlength = element.attr('maxlength');
 	var currentlength = maxlength - element.val().length;
-	var html = '<div class="text_characters text_right">'+currentlength+'/'+maxlength+'</div>';
-	element.parent().prev('.text_characters').html(html);
+	var text = currentlength+'/'+maxlength;
+	element.parent().prev('.text_characters').text(text);
 }
 
 export function createTextField(id, name, label = '', atributes = 0, type = 'text'){

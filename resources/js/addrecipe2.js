@@ -68,7 +68,7 @@ $(document).ready(function() {
 
 function createIngredient(element,n, label){
 	var id = "recipe_ingredient_"+n;
-	var textfield = form.createTextField(id, id, label, {'data-modify': true, 'maxlength':50});
+	var textfield = form.createTextField(id, id, label, {'data-modify': '', 'maxlength':50});
 	
 
 	element.before(textfield);
@@ -106,7 +106,7 @@ function removeIngredient(ingredient){
 	
 	ingredient.remove();
 
-	var ingredietns = $('#ingredeints_modal .textfield.delete');
+	var ingredients = $('#ingredients_modal .textfield.delete');
 	if(ingredients.length == 1){
 		$('.remove_ingredient').remove();
 		ingredients.removeClass('delete');
@@ -120,8 +120,8 @@ function addDeleteButton(){
 	var textCharacters = $('#ingredients_modal .text_characters').not('.delete');
 
 	textfields.addClass('delete');
-	textfields.append(deletebutton);
 	textCharacters.addClass('delete');
+	textfields.append(deletebutton);
 	
 }
 
