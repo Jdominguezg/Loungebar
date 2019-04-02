@@ -67,7 +67,13 @@ $('.modal.form .cancel').on('click', function(event){
 		}
 
 		if(input.is('[data-modify]')){
-			var id = input.attr('id');
+			
+			if(input.attr('data-modify').length > 0){
+				var id = input.attr('data-modify');
+			}else{
+				var id = input.attr('id');
+			}
+			
 			if(prevData.trim() == ''){
 				$('.'+id).text($('.'+id).attr('data-placeholder'));
 				input.val('').change();
@@ -96,7 +102,11 @@ function modifyContent(elements){
 		var data = input.val();
 
 		if(input.is('[data-modify]')){
-			var id = input.attr('id');
+			if(input.attr('data-modify').length > 0){
+				var id = input.attr('data-modify');
+			}else{
+				var id = input.attr('id');
+			}
 			if(data.trim() != ''){
 				$('.'+id).text(data);
 				input.attr('data-prev-val', data);

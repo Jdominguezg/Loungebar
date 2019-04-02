@@ -36603,7 +36603,7 @@ $(document).ready(function () {
       $(this).attr('placeholder', placeholder);
     }
   });
-  $(document).on('click', '#title_modal .accept', function (e) {
+  $(document).on('click', '#title_modal .accept, #title_modal .cancel', function (e) {
     var hours = $('#recipe_duration_time_hours').val();
     var minutes = $('#recipe_duration_time_minutes').val();
 
@@ -36631,7 +36631,9 @@ $(document).ready(function () {
       $('#recipe_duration_time_hours').attr('data-prev-val', hours);
     }
 
-    recipeTime(hours, minutes);
+    if (hours > 0 || minutes > 0) {
+      recipeTime(hours, minutes);
+    }
   });
   $(document).on('click', '.add_ingredient', function (e) {
     var n = $(this).siblings('.textfield').length + 1;
@@ -36698,22 +36700,25 @@ function addDeleteButton() {
 function recipeTime() {
   var hours = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var minutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var time = '';
 
   if (hours > 0) {
     if (hours > 1) {
-      $('.recipe_duration_time_hours').text(hours + ' horas');
+      time += hours + ' horas ';
     } else {
-      $('.recipe_duration_time_hours').text(hours + ' hora');
+      time += hours + ' hora ';
     }
   }
 
   if (minutes > 0) {
     if (minutes > 1) {
-      $('.recipe_duration_time_minutes').text(minutes + ' minutos');
+      time += minutes + ' minutos ';
     } else {
-      $('.recipe_duration_time_minutes').text(minutes + ' minuto');
+      time += minutes + ' minuto ';
     }
   }
+
+  $('.recipe_duration_time').text(time);
 }
 
 /***/ }),
@@ -36980,7 +36985,11 @@ $(document).ready(function () {
       }
 
       if (input.is('[data-modify]')) {
-        var id = input.attr('id');
+        if (input.attr('data-modify').length > 0) {
+          var id = input.attr('data-modify');
+        } else {
+          var id = input.attr('id');
+        }
 
         if (prevData.trim() == '') {
           $('.' + id).text($('.' + id).attr('data-placeholder'));
@@ -37006,7 +37015,11 @@ function modifyContent(elements) {
     var data = input.val();
 
     if (input.is('[data-modify]')) {
-      var id = input.attr('id');
+      if (input.attr('data-modify').length > 0) {
+        var id = input.attr('data-modify');
+      } else {
+        var id = input.attr('id');
+      }
 
       if (data.trim() != '') {
         $('.' + id).text(data);

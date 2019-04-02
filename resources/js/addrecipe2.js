@@ -25,7 +25,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$(document).on('click', '#title_modal .accept', function(e){
+	$(document).on('click', '#title_modal .accept, #title_modal .cancel', function(e){
 		var hours = $('#recipe_duration_time_hours').val();
 		var minutes = $('#recipe_duration_time_minutes').val();
 		if(minutes < 0){
@@ -48,7 +48,9 @@ $(document).ready(function() {
 			$('#recipe_duration_time_hours').val(hours);
 			$('#recipe_duration_time_hours').attr('data-prev-val',hours);
 		}
-		recipeTime(hours, minutes);
+		if(hours > 0 || minutes >0){
+			recipeTime(hours, minutes);			
+		}
 	});
 	
 	$(document).on('click', '.add_ingredient', function(e){
@@ -124,20 +126,20 @@ function addDeleteButton(){
 }
 
 function recipeTime(hours = 0, minutes = 0){
+	var time = '';
 	if(hours > 0){
 		if(hours > 1){
-			$('.recipe_duration_time_hours').text(hours+' horas');			
+			time += hours+' horas ';			
 		}else{
-			$('.recipe_duration_time_hours').text(hours+' hora');
+			time += hours+' hora ';
 		}
 	}
 	if(minutes > 0){
 		if(minutes > 1){
-			$('.recipe_duration_time_minutes').text(minutes+' minutos');
+			time += minutes+' minutos ';
 		}else{
-			$('.recipe_duration_time_minutes').text(minutes+' minuto');
-		}
-		
+			time+= minutes+' minuto ';
+		}	
 	}
-	
+	$('.recipe_duration_time').text(time);
 }
