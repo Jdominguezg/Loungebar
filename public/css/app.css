@@ -591,9 +591,30 @@ section.content {
   background-position: center;
   background-size: cover;
   position: relative;
-  overflow: hidden;
   color: #fff;
   padding: 0 15px;
+}
+
+.recipe_header .recipe_background_button {
+  position: absolute;
+  top: 312px;
+  right: 0;
+  z-index: 1;
+}
+
+.recipe_header .recipe_background_button .material-icons {
+  font-size: 32px;
+  height: 32px;
+  width: 32px;
+}
+
+.recipe_background_button input {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
 }
 
 .recipe_header .overflow {
@@ -608,23 +629,20 @@ section.content {
 
 .recipe_header .recipe_title {
   position: absolute;
-  flex-direction: column;
-  vertical-align: middle;
-  align-items: center;
   bottom: 104px;
   left: 0;
   width: 100%;
-  height: 76px;
-  z-index: 2;
+  max-height: 76px;
+  z-index: 1;
   padding: 0 15px;
   color: #fff;
-  overflow: hidden;
   font-size: 32px;
+  overflow: hidden;
 }
 
 .recipe_header .recipe_duration {
   position: absolute;
-  bottom: 60px;
+  bottom: 70px;
   z-index: 1;
   display: flex;
   align-items: center;
@@ -633,16 +651,8 @@ section.content {
 
 .recipe_title {
   font-size: 28px;
-  background: transparent;
   font-weight: 400;
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
-}
-
-.recipe_title {
-  resize: none;
   width: 100%;
-  font-weight: 400;
   color: #3e3e3e;
   margin-bottom: 0;
 }
@@ -688,10 +698,10 @@ section.content {
 }
 
 .recipe_body {
-  padding: 15px;
+  padding: 45px 15px 15px;
 }
 
-.recipe_description {
+.recipe_introduction {
   margin: 10px 0;
 }
 

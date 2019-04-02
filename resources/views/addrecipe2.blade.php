@@ -26,6 +26,10 @@
 					<i class="material-icons">star</i>
 				</div>
 			</div>
+			<button class="action_button recipe_background_button">
+				<input type="file" style="opacity: 0" name="recipe_principal_img" accept="image/*" id="recipe_principal_img">
+				<i class="material-icons">image</i>
+			</button>
 		</div>
 
 		<div class="recipe_body">
@@ -55,13 +59,13 @@
 				</div>
 			</div>
 
-			<div class="recipe_description pointer trigger_modal" data-modal="description_modal" data-placeholder="Click para añadir descripción a la receta."></div>
+			<div class="recipe_introduction pointer trigger_modal" data-modal="introduction_modal" data-placeholder="Click para añadir una introducción a la receta."></div>
 			
-			<div class="modal form" id="description_modal">
+			<div class="modal form" id="introduction_modal">
 				<div class="col-12">
 					<div class="textfield">
-						<textarea id="recipe_description" data-modify name="recipe_description" maxlength="1000"></textarea>
-						<label for="recipe_description">Descripción</label>
+						<textarea id="recipe_introduction" data-modify name="recipe_introduction" maxlength="1000"></textarea>
+						<label for="recipe_introduction">Introducción</label>
 					</div>
 					<div class="righted">
 						<button class="dense_button close_modal cancel"><span>Cancelar</span></button>
@@ -91,6 +95,30 @@
 						<button class="raised_button close_modal accept"><span>Aceptar</span></button>
 					</div>
 				</div>
+			</div>
+			
+			<div class="recipe_description trigger_modal" data-modal="description_modal">
+				<h2>Paso 1 - <span class="recipe_step_title_1" data-placeholder=''></span></h2>
+				<div class="recipe_step_description_1" data-placeholder="Click para añadir descripción del paso 1"></div>
+			</div>
+
+			<div class="modal form" id="description_modal">
+				<div class="col-12">
+					<div class="textfield">
+						<input type="text" data-modify name="recipe_step_title_1" maxlength="50" id="recipe_step_title_1">
+						<label for="recipe_step_title_1">Paso 1</label>
+					</div>
+					<div class="textfield">
+						<textarea name="recipe_step_description_1" data-modify id="recipe_step_description_1" maxlength="1000" style="resize: none"></textarea>
+						<label for="recipe_step_description_1">Descripción</label>
+					</div>
+					<div class="righted">
+						<button class="dense_button close_modal cancel"><span>Cancelar</span></button>
+						<button class="raised_button close_modal accept"><span>Aceptar</span></button>
+					</div>
+				</div>
+				
+
 			</div>
 
 

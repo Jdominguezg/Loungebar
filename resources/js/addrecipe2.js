@@ -64,6 +64,11 @@ $(document).ready(function() {
 		removeIngredient($(this).parent());
 	});
 
+
+	$(document).on('click', '.recipe_background_button', function(e){
+		$(this).children('input').trigger('focus');
+	});
+
 });
 
 function createIngredient(element,n, label){
