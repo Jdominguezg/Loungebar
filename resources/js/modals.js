@@ -47,13 +47,13 @@ $(document).on('keyup', function(event){
 });
 
 
-$('.modal.form .accept').on('click', function(event){
+$(document).on('click', '.modal.form .accept', function(event){
 	event.preventDefault();
 	var elements = $(this).parent().siblings('.textfield').children('input, textarea');
 	modifyContent(elements);
 });
 
-$('.modal.form .cancel').on('click', function(event){
+$(document).on('click', '.modal.form .cancel', function(event){
 	event.preventDefault();
 	var elements = $(this).parent().siblings('.textfield').children('input, textarea');
 	elements.each(function(index) {
@@ -87,7 +87,7 @@ $('.modal.form .cancel').on('click', function(event){
 
 });
 
-$('.close_modal').on('click', function(event){
+$(document).on('click', '.close_modal', function(event){
 	$(this).parents('.modal').removeClass('open');
 });
 

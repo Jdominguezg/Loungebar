@@ -1,127 +1,185 @@
+import * as form from './forms.js';
+
 $(document).ready(function() {
-	var ingredients = $('.ingredients');
-	var ingredientsCount = ingredients.attr('data-global-count');
 
-// Devuelve el html de un nuevo ingrediente junto a su Id.
-	function generateIngredientHtml(id){
-		var html = 
-		'<div id="ingredient_'+id+'" class="row ingredient">'+
-			'<div class="textfield col-12">'+
-				'<input id="name_'+id+'" type="text" name="ingredient_name">'+
-				'<label for="name_'+id+'">Ingrediente '+id+'</label>'+
-			'</div>'+
-			'<div class="textfield col-5">'+
-				'<input id="quantity_'+id+'" type="number" min="1" name="quantity">'+
-				'<label for="quantity_'+id+'">Cantidad</label>'+
-			'</div>'+		
-			'<div class="textfield col-4">'+
-				'<select id="unit_'+id+'">'+
-					'<option>gr.</option>'+
-					'<option>Uds.</option>'+
-					'<option>Kg.</option>'+
-				'</select>'+
-			'</div>'+
-			'<div class="textfield col-3">'+
-				'<button id="remove_'+id+'" class="shaped_button remove_ingredient" data-id="'+id+'">'+
-					'<span><i class="material-icons">delete</i></span>'+
-				'</button>'+
-			'</div>'+
-		'</div>';
-		return html;
-	}
-
-
-	// Resta -1 a los id de los ingredientes que continuan al ingrediente eliminado.
-	function editIngredientsId(elements){
-		elements.each(function(){
-			var element = $(this);
-			var id = element.attr('id').substr(element.attr('id').length - 1);
-			var new_id = id-1;
-
-			element.attr('id', 'ingredient_'+new_id);
-
-			var name = $('#name_'+id);
-			var namelabel = name.siblings('label');
-			var namelabeltext = namelabel.html().substr(0, namelabel.html().length - 1);
-
-			name.attr('id', 'name_'+new_id);
-			namelabel.attr('for', 'name_'+new_id);
-			namelabel.html(namelabeltext+new_id);
-
-			var quantity = $('#quantity_'+id);
-			var quantitylabel = quantity.siblings('label');
-
-			quantity.attr('id', 'quantity_'+new_id);
-			quantitylabel.attr('for', 'quantity_'+new_id);
-
-			var unit = $('#unit_'+id);
-
-			unit.attr('id', 'unit_'+new_id);
-
-			var remove = $('#remove_'+id);
-
-			remove.attr('id', 'remove_'+new_id);
-			remove.attr('data-id', new_id);
-		});		
-	}
-
-// Añade un nuevo ingrediente al formulario.
-	function addingredient(element, count){
-		ingredients.attr('data-global-count', count);
-		element.after(generateIngredientHtml(count));
-	}
-
-// Elimina un ingradiente del formulario.
-	function removeingredient(id, count){
-		var element = $('#ingredient_'+id);
-		var elements = element.nextAll('.ingredient');
-		if(elements){
-			editIngredientsId(elements);
-		}		
-		element.remove();			
-	}
-
-//function comrpueba si el numero de ingredientes es igual a 1.
-	function ingredientsCountIsOne(){
-		if(ingredientsCount == 1){
-			return true;
+	$(document).on('click', '#title_modal .accept, #title_modal .cancel', function(e){
+		var hours = $('#recipe_duration_time_hours').val();
+		var minutes = $('#recipe_duration_time_minutes').val();
+		if(minutes < 0){
+			minutes = 0;
+			$('#recipe_duration_time_minutes').val(minutes);
+			$('#recipe_duration_time_minutes').attr('data-prev-val',minutes);
 		}
-		else{
-			return false;
+		if(minutes > 59){
+			minutes = 59;
+			$('#recipe_duration_time_minutes').val(minutes);
+			$('#recipe_duration_time_minutes').attr('data-prev-val',minutes);
 		}
-	}	
-
-	$(document).on('click', '#addIngredient', function(e){
-		var ingredient = $(this).siblings('.ingredient').last();		
-		ingredientsCount++;
-
-		if(!ingredientsCountIsOne()){
-			$('#quantity_1').parent().removeClass('col-6');
-			$('#unit_1').parent().removeClass('col-6');
-			$('#remove_1').parent().removeClass('d-none');	
-			$('#quantity_1').parent().addClass('col-5');
-			$('#unit_1').parent().addClass('col-4');
-			$('#remove_1').parent().addClass('col-3');
+		if(hours < 0){
+			hours = 0;
+			$('#recipe_duration_time_hours').val(hours);
+			$('#recipe_duration_time_hours').attr('data-prev-val',hours);
 		}
-		addingredient(ingredient, ingredientsCount);
+		if(hours > 48){
+			hours = 48;
+			$('#recipe_duration_time_hours').val(hours);
+			$('#recipe_duration_time_hours').attr('data-prev-val',hours);
+		}
+		if(hours > 0 || minutes >0){
+			recipeTime(hours, minutes);			
+		}
+	});
+	
+	$(document).on('click', '.add_ingredient', function(e){
+		var n = ($(this).siblings('.textfield').length) + 1;
+		var label = $(this).siblings('.textfield').last().children('label').text();
+		createIngredient($(this), n, label);
 	});
 
 	$(document).on('click', '.remove_ingredient', function(e){
-		var id = $(this).attr('data-id');
-
-		if(ingredientsCount>1){
-			removeingredient(id);
-			ingredientsCount--;	
-		}
-
-		if(ingredientsCountIsOne()){
-			$('#quantity_1').parent().addClass('col-6');
-			$('#unit_1').parent().addClass('col-6');
-			$('#remove_1').parent().addClass('d-none');	
-			$('#quantity_1').parent().removeClass('col-5');
-			$('#unit_1').parent().removeClass('col-4');
-			$('#remove_1').parent().removeClass('col-3');			
-		}
-
+		
+		removeIngredient($(this).parent());
 	});
+
+
+	$(document).on('click', '.recipe_background_button', function(e){
+		$(this).children('input').trigger('focus');
+	});
+
+	$(document).on('change', '#recipe_principal_img', function(e){
+		loadImg(this, $('.recipe_header.recipe_principal_img'));
+	});
+
+	$(document).on('click', '.add_step', function(e){
+		addStep($(this));
+	});
+
 });
+
+function loadImg(input, element){
+	if(input.files && input.files[0]){
+		var reader = new FileReader();
+
+		reader.onload = function(e){
+			element.css('background-image', 'url('+e.target.result+')');
+		}
+
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+function createIngredient(element,n, label){
+	var id = "recipe_ingredient_"+n;
+	var textfield = form.createTextField(id, id, label, {'data-modify': '', 'maxlength':50});
+	
+
+	element.before(textfield);
+	form.focusElement($('#'+id));
+	form.checkMaxLength();
+
+	addDeleteButton();
+
+	var ul = $('[list-append]');	
+	var html = $('<li class="'+id+'" data-placeholder="Click para añadir los ingredientes"></li>');
+	ul.append(html);
+	form.checkDataPlaceholder();
+}
+
+function removeIngredient(ingredient){
+	
+	var id = ingredient.children('input').attr('id');
+	$('.'+id).remove();
+	ingredient.prev('.text_characters.delete').remove();
+
+	var nextsTextfields = ingredient.nextAll('.textfield');
+	var nextsInputs = nextsTextfields.children('input');
+	nextsInputs.each(function(index, el) {
+		var id = $(this).attr('id');
+		var shortid = id[id.length-1];
+		shortid--;
+		$(this).attr({
+			name: 'recipe_ingredient_'+shortid,
+			id: 'recipe_ingredient_'+shortid
+		});
+		$('.'+id).addClass('recipe_ingredient_'+shortid).removeClass(id);
+		$(this).siblings('label').attr('for', 'recipe_ingredient_'+shortid);
+		
+	});	
+	
+	ingredient.remove();
+
+	var ingredients = $('#ingredients_modal .textfield.delete');
+	if(ingredients.length == 1){
+		$('.remove_ingredient').remove();
+		ingredients.removeClass('delete');
+		ingredients.prev('.text_characters.delete').removeClass('delete');
+	}
+}
+
+function addDeleteButton(){
+	var deletebutton = $('<button class="dense_button remove_ingredient"><span><i class="material-icons">delete</i></span></button>');
+	var textfields = $('#ingredients_modal .textfield').not('.delete');
+	var textCharacters = $('#ingredients_modal .text_characters').not('.delete');
+
+	textfields.addClass('delete');
+	textCharacters.addClass('delete');
+	textfields.append(deletebutton);
+	
+}
+
+function addStep(button){
+
+	var id = $('[id*=description_modal_]').last().attr('id').substr(-1);
+	id++
+	var trigger = $('<div class="recipe_description trigger_modal" data-modal="description_modal_'+id+'">'+
+						'<h2>Paso '+id+' - <span class="recipe_step_title_'+id+'" data-placeholder=""></span></h2>'+
+						'<div class="recipe_step_description_'+id+'" data-placeholder="Click para añadir descripción del paso '+id+'"></div>'+
+					'</div>');
+	var modal = $('<div class="modal form" id="description_modal_'+id+'">'+
+					'<div class="col-12">'+
+						'<div class="textfield">'+
+							'<input type="text" data-modify name="recipe_step_title_'+id+'" maxlength="50" id="recipe_step_title_'+id+'">'+
+							'<label for="recipe_step_title_1">Paso '+id+'</label>'+
+						'</div>'+
+						'<div class="textfield">'+
+							'<textarea name="recipe_step_description_'+id+'" data-modify id="recipe_step_description_'+id+'" maxlength="1000" style="resize: none"></textarea>'+
+							'<label for="recipe_step_description_'+id+'">Descripción</label>'+
+						'</div>'+
+						'<div class="righted">'+
+							'<button class="dense_button close_modal cancel"><span>Cancelar</span></button>'+
+							'<button class="raised_button close_modal accept"><span>Aceptar</span></button>'+
+						'</div>'+
+					'</div>'+
+				'</div>');
+
+
+	button.before(trigger, modal);
+	modal.after('<overflow></overflow>');
+	form.checkDataPlaceholder();
+
+
+
+}
+
+function removeStep(){
+
+}
+
+function recipeTime(hours = 0, minutes = 0){
+	var time = '';
+	if(hours > 0){
+		if(hours > 1){
+			time += hours+' horas ';			
+		}else{
+			time += hours+' hora ';
+		}
+	}
+	if(minutes > 0){
+		if(minutes > 1){
+			time += minutes+' minutos ';
+		}else{
+			time+= minutes+' minuto ';
+		}	
+	}
+	$('.recipe_duration_time').text(time);
+}

@@ -580,10 +580,6 @@ section.content {
   margin-top: 56px;
 }
 
-.ingredient {
-  margin: 10px 0;
-}
-
 .recipe_header {
   height: 350px;
   width: 100%;
@@ -595,25 +591,39 @@ section.content {
   padding: 0 15px;
 }
 
-.recipe_header .recipe_background_button {
-  position: absolute;
-  top: 312px;
-  right: 0;
-  z-index: 1;
-}
-
-.recipe_header .recipe_background_button .material-icons {
-  font-size: 32px;
-  height: 32px;
-  width: 32px;
-}
-
-.recipe_background_button input {
+.recipe_header input[type=file] {
   height: 100%;
   width: 100%;
   position: absolute;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.recipe_header .change_img {
+  height: 50%;
+  width: 100%;
+  position: relative;
   top: 0;
   left: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.change_img .material-icons {
+  font-size: 36px;
+}
+
+.change_img label span,
+.change_img .material-icons {
+  display: block;
+}
+
+.change_img label {
+  display: block;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   cursor: pointer;
 }
 

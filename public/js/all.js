@@ -36572,37 +36572,18 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/addrecipe2.js":
-/*!************************************!*\
-  !*** ./resources/js/addrecipe2.js ***!
-  \************************************/
+/***/ "./resources/js/addrecipe.js":
+/*!***********************************!*\
+  !*** ./resources/js/addrecipe.js ***!
+  \***********************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _forms_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forms.js */ "./resources/js/forms.js");
- //TODO REMOVE INGREDIETNS
 
 $(document).ready(function () {
-  var maxcharacter = 35;
-  var length = $('.recipe_title').val().length;
-  var placeholder = $('.recipe_title').attr('placeholder');
-  $(document).on('keyup', '.recipe_title', function (e) {
-    var length = $(this).val().length;
-
-    if (length <= maxcharacter) {
-      $('.actual_character').html(maxcharacter - length);
-    }
-  });
-  $(document).on('focus', '.recipe_title', function (e) {
-    $(this).attr('placeholder', '');
-  });
-  $(document).on('change', '.recipe_title', function (e) {
-    if ($(this).val() == '') {
-      $(this).attr('placeholder', placeholder);
-    }
-  });
   $(document).on('click', '#title_modal .accept, #title_modal .cancel', function (e) {
     var hours = $('#recipe_duration_time_hours').val();
     var minutes = $('#recipe_duration_time_minutes').val();
@@ -36646,7 +36627,25 @@ $(document).ready(function () {
   $(document).on('click', '.recipe_background_button', function (e) {
     $(this).children('input').trigger('focus');
   });
+  $(document).on('change', '#recipe_principal_img', function (e) {
+    loadImg(this, $('.recipe_header.recipe_principal_img'));
+  });
+  $(document).on('click', '.add_step', function (e) {
+    addStep($(this));
+  });
 });
+
+function loadImg(input, element) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      element.css('background-image', 'url(' + e.target.result + ')');
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 
 function createIngredient(element, n, label) {
   var id = "recipe_ingredient_" + n;
@@ -36700,6 +36699,18 @@ function addDeleteButton() {
   textfields.append(deletebutton);
 }
 
+function addStep(button) {
+  var id = $('[id*=description_modal_]').last().attr('id').substr(-1);
+  id++;
+  var trigger = $('<div class="recipe_description trigger_modal" data-modal="description_modal_' + id + '">' + '<h2>Paso ' + id + ' - <span class="recipe_step_title_' + id + '" data-placeholder=""></span></h2>' + '<div class="recipe_step_description_' + id + '" data-placeholder="Click para añadir descripción del paso ' + id + '"></div>' + '</div>');
+  var modal = $('<div class="modal form" id="description_modal_' + id + '">' + '<div class="col-12">' + '<div class="textfield">' + '<input type="text" data-modify name="recipe_step_title_' + id + '" maxlength="50" id="recipe_step_title_' + id + '">' + '<label for="recipe_step_title_1">Paso ' + id + '</label>' + '</div>' + '<div class="textfield">' + '<textarea name="recipe_step_description_' + id + '" data-modify id="recipe_step_description_' + id + '" maxlength="1000" style="resize: none"></textarea>' + '<label for="recipe_step_description_' + id + '">Descripción</label>' + '</div>' + '<div class="righted">' + '<button class="dense_button close_modal cancel"><span>Cancelar</span></button>' + '<button class="raised_button close_modal accept"><span>Aceptar</span></button>' + '</div>' + '</div>' + '</div>');
+  button.before(trigger, modal);
+  modal.after('<overflow></overflow>');
+  _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
+}
+
+function removeStep() {}
+
 function recipeTime() {
   var hours = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var minutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
@@ -36744,7 +36755,7 @@ __webpack_require__(/*! ./ripple.js */ "./resources/js/ripple.js");
 
 __webpack_require__(/*! ./forms.js */ "./resources/js/forms.js");
 
-__webpack_require__(/*! ./addrecipe2.js */ "./resources/js/addrecipe2.js");
+__webpack_require__(/*! ./addrecipe.js */ "./resources/js/addrecipe.js");
 
 __webpack_require__(/*! ./modals.js */ "./resources/js/modals.js"); // require('./addrecipe.js');
 // Comented
@@ -36969,12 +36980,12 @@ $(document).ready(function () {
       }
     }
   });
-  $('.modal.form .accept').on('click', function (event) {
+  $(document).on('click', '.modal.form .accept', function (event) {
     event.preventDefault();
     var elements = $(this).parent().siblings('.textfield').children('input, textarea');
     modifyContent(elements);
   });
-  $('.modal.form .cancel').on('click', function (event) {
+  $(document).on('click', '.modal.form .cancel', function (event) {
     event.preventDefault();
     var elements = $(this).parent().siblings('.textfield').children('input, textarea');
     elements.each(function (index) {
@@ -37006,7 +37017,7 @@ $(document).ready(function () {
       _forms_js__WEBPACK_IMPORTED_MODULE_0__["updateCharLength"](input);
     });
   });
-  $('.close_modal').on('click', function (event) {
+  $(document).on('click', '.close_modal', function (event) {
     $(this).parents('.modal').removeClass('open');
   });
   $('.modal').after('<overflow></overflow>');

@@ -18,7 +18,3 @@ Route::get('/', function () {
 Route::get('/addrecipe', function(){
 	return view('addrecipe');
 });
-
-Route::get('/addrecipe2', function(){
-	return view('addrecipe2');
-});

@@ -8,7 +8,7 @@
 require('./bootstrap');
 require('./ripple.js');
 require('./forms.js');
-require('./addrecipe2.js');
+require('./addrecipe.js');
 require('./modals.js');
 // require('./addrecipe.js');
 
