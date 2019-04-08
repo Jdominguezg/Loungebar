@@ -55,15 +55,17 @@
 			</div>
 
 			@include('./components/modals/ingredients')
-			
-			<div class="recipe_description trigger_modal" data-modal="description_modal_1">
-				<h2>Paso 1 - <span class="recipe_step_title_1" data-placeholder=''></span></h2>
-				<div class="recipe_step_description_1" data-placeholder="Click para añadir descripción del paso 1"></div>
+			<div id="_recipe_step_1">
+				
+				<div class="recipe_description trigger_modal" data-modal="description_modal_1">
+					<h2>Paso 1 - <span class="recipe_step_title_1" data-placeholder=''></span></h2>
+					<div class="recipe_step_description_1" data-placeholder="Click para añadir descripción del paso 1"></div>
+				</div>
+
+				@include('./components/modals/description')
 			</div>
 
-			@include('./components/modals/description')
-		
-		<button class="raised_button add_step" style="margin: 8px 0;"><span>Añadir Paso</span></button>
+			<button class="raised_button add_step" style="margin: 8px 0;"><span>Añadir Paso</span></button>
 
 		</div>
 	</div>

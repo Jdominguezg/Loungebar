@@ -54,6 +54,10 @@ $(document).ready(function() {
 		addStep($(this));
 	});
 
+	$(document).on('click', '.remove_step', function(e){
+		removeStep($(this));
+	});
+
 });
 
 function loadImg(input, element){
@@ -129,8 +133,17 @@ function addDeleteButton(){
 
 function addStep(button){
 
-	var id = $('[id*=description_modal_]').last().attr('id').substr(-1);
+	var id = $('[id*=_recipe_step_]').last().attr('id').substr(-1);
+	var removeButton = getRemoveStepButton(id);
+
+	if(!$('[id*=_recipe_step_]').last().children('.remove_step').length){
+		$('[id*=_recipe_step_]').last().append(removeButton);
+	}
+
 	id++
+
+	var step = $('<div id="_recipe_step_'+id+'"></div>');
+
 	var trigger = $('<div class="recipe_description trigger_modal" data-modal="description_modal_'+id+'">'+
 						'<h2>Paso '+id+' - <span class="recipe_step_title_'+id+'" data-placeholder=""></span></h2>'+
 						'<div class="recipe_step_description_'+id+'" data-placeholder="Click para añadir descripción del paso '+id+'"></div>'+
@@ -151,18 +164,31 @@ function addStep(button){
 						'</div>'+
 					'</div>'+
 				'</div>');
-
-
-	button.before(trigger, modal);
+	
+	
+	button.before(step);
+	removeButton = getRemoveStepButton(id);
+	step.append(trigger, modal, removeButton);
 	modal.after('<overflow></overflow>');
 	form.checkDataPlaceholder();
 
-
-
 }
 
-function removeStep(){
+function removeStep(button){
+	var id = button.attr('id').substr(-1);
+	var nextSteps = $('#_recipe_step_'+id).siblings('[id*=_recipe_step_]');
+	$('#_recipe_step_'+id).remove();
+	$.each(nextSteps, function(index, val) {
+		 var id = $(this).attr('id').substr(-1);
+		 $(this).children('[data-modal=description_modal_'+id+']').children('h2').trim;
+		 $(this).attr('id', '_recipe_step_'+id);
+		 id--;
 
+	});
+}
+
+function getRemoveStepButton(id){
+	return '<button id="remove_step_'+id+'" class="outlined_button remove_step" style="display: block; margin: 8px 0;">Eliminar Paso</button>';
 }
 
 function recipeTime(hours = 0, minutes = 0){

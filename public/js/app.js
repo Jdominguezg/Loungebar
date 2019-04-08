@@ -36633,6 +36633,9 @@ $(document).ready(function () {
   $(document).on('click', '.add_step', function (e) {
     addStep($(this));
   });
+  $(document).on('click', '.remove_step', function (e) {
+    removeStep($(this));
+  });
 });
 
 function loadImg(input, element) {
@@ -36700,16 +36703,39 @@ function addDeleteButton() {
 }
 
 function addStep(button) {
-  var id = $('[id*=description_modal_]').last().attr('id').substr(-1);
+  var id = $('[id*=_recipe_step_]').last().attr('id').substr(-1);
+  var removeButton = getRemoveStepButton(id);
+
+  if (!$('[id*=_recipe_step_]').last().children('.remove_step').length) {
+    $('[id*=_recipe_step_]').last().append(removeButton);
+  }
+
   id++;
+  var step = $('<div id="_recipe_step_' + id + '"></div>');
   var trigger = $('<div class="recipe_description trigger_modal" data-modal="description_modal_' + id + '">' + '<h2>Paso ' + id + ' - <span class="recipe_step_title_' + id + '" data-placeholder=""></span></h2>' + '<div class="recipe_step_description_' + id + '" data-placeholder="Click para añadir descripción del paso ' + id + '"></div>' + '</div>');
   var modal = $('<div class="modal form" id="description_modal_' + id + '">' + '<div class="col-12">' + '<div class="textfield">' + '<input type="text" data-modify name="recipe_step_title_' + id + '" maxlength="50" id="recipe_step_title_' + id + '">' + '<label for="recipe_step_title_1">Paso ' + id + '</label>' + '</div>' + '<div class="textfield">' + '<textarea name="recipe_step_description_' + id + '" data-modify id="recipe_step_description_' + id + '" maxlength="1000" style="resize: none"></textarea>' + '<label for="recipe_step_description_' + id + '">Descripción</label>' + '</div>' + '<div class="righted">' + '<button class="dense_button close_modal cancel"><span>Cancelar</span></button>' + '<button class="raised_button close_modal accept"><span>Aceptar</span></button>' + '</div>' + '</div>' + '</div>');
-  button.before(trigger, modal);
+  button.before(step);
+  removeButton = getRemoveStepButton(id);
+  step.append(trigger, modal, removeButton);
   modal.after('<overflow></overflow>');
   _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
 }
 
-function removeStep() {}
+function removeStep(button) {
+  var id = button.attr('id').substr(-1);
+  var nextSteps = $('#_recipe_step_' + id).siblings('[id*=_recipe_step_]');
+  $('#_recipe_step_' + id).remove();
+  $.each(nextSteps, function (index, val) {
+    var id = $(this).attr('id').substr(-1);
+    $(this).children('[data-modal=description_modal_' + id + ']').children('h2').trim;
+    $(this).attr('id', '_recipe_step_' + id);
+    id--;
+  });
+}
+
+function getRemoveStepButton(id) {
+  return '<button id="remove_step_' + id + '" class="outlined_button remove_step" style="display: block; margin: 8px 0;">Eliminar Paso</button>';
+}
 
 function recipeTime() {
   var hours = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
