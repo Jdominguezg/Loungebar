@@ -36731,8 +36731,13 @@ function removeStep(element) {
     $('[data-modal=description_modal_' + n + '] h2').html($('[data-modal=description_modal_' + n + '] h2').html().replace(n, n - 1));
     $('.recipe_step_title_' + n).addClass('recipe_step_title_' + (n - 1)).removeClass('recipe_step_title_' + n);
     $('[data-modal=description_modal_' + n + ']').attr('data-modal', 'description_modal_' + (n - 1));
-    $('.recipe_step_description_' + n).attr('data-placeholder', $('.recipe_step_description_' + n).attr('data-placeholder').replace(n, n - 1)).text('').addClass('recipe_step_description_' + (n - 1)).removeClass('recipe_step_description_' + n);
-    _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
+
+    if ($('#recipe_step_description_' + n).val().trim() == '') {
+      $('.recipe_step_description_' + n).text('');
+      _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
+    }
+
+    $('.recipe_step_description_' + n).attr('data-placeholder', $('.recipe_step_description_' + n).attr('data-placeholder').replace(n, n - 1)).addClass('recipe_step_description_' + (n - 1)).removeClass('recipe_step_description_' + n);
     $('[for=recipe_step_title_' + n + ']').text($('[for=recipe_step_title_' + n + ']').text().replace(n, n - 1)).attr('for', 'recipe_step_title_' + (n - 1));
     $('#recipe_step_title_' + n).attr({
       name: 'recipe_step_title_' + (n - 1),

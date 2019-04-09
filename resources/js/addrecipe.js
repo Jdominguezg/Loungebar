@@ -190,13 +190,18 @@ function removeStep(element){
 		 	.removeClass('recipe_step_title_'+n);
 
 		 $('[data-modal=description_modal_'+n+']').attr('data-modal','description_modal_'+(n-1));
+
+		 if($('#recipe_step_description_'+n).val().trim() == ''){
+		 	$('.recipe_step_description_'+n).text('');
+		 	form.checkDataPlaceholder();
+		 }
 		 
 		 $('.recipe_step_description_'+n)
 		 	.attr('data-placeholder', $('.recipe_step_description_'+n)
-		 	.attr('data-placeholder').replace(n, n-1)).text('')
+		 	.attr('data-placeholder').replace(n, n-1))
 		 	.addClass('recipe_step_description_'+(n-1))
 		 	.removeClass('recipe_step_description_'+n);
-		 	form.checkDataPlaceholder();
+		 	
 
 		 $('[for=recipe_step_title_'+n+']')
 		 	.text($('[for=recipe_step_title_'+n+']').text().replace(n, n-1))
