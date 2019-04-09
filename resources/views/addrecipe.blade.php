@@ -55,7 +55,7 @@
 			</div>
 
 			@include('./components/modals/ingredients')
-			<div id="_recipe_step_1">
+			<div id="_recipe_step_1" data-number="1">
 				
 				<div class="recipe_description trigger_modal" data-modal="description_modal_1">
 					<h2>Paso 1 - <span class="recipe_step_title_1" data-placeholder=''></span></h2>
@@ -71,5 +71,6 @@
 	</div>
 
 </section>
+
 
 @endsection

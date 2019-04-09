@@ -1,7 +1,7 @@
 <div class="modal form" id="ingredients_modal">
 	<div class="col-12 modal_container">
 		<div class="textfield">
-			<input type="text" name="recipe_ingredient_1" data-modify id="recipe_ingredient_1" maxlength="50">
+			<input type="text" data-number="1" name="recipe_ingredient_1" data-modify id="recipe_ingredient_1" maxlength="50">
 			<label for="recipe_ingredient_1">Cantidad e ingrediente</label>
 		</div>
 		<button class="outlined_button col-12 add_ingredient">

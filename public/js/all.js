@@ -36631,10 +36631,11 @@ $(document).ready(function () {
     loadImg(this, $('.recipe_header.recipe_principal_img'));
   });
   $(document).on('click', '.add_step', function (e) {
-    addStep($(this));
+    var n = $(this).siblings('[id*=_recipe_step_]').length;
+    createStep(n);
   });
   $(document).on('click', '.remove_step', function (e) {
-    removeStep($(this));
+    removeStep($(this).parent());
   });
 });
 
@@ -36654,34 +36655,36 @@ function createIngredient(element, n, label) {
   var id = "recipe_ingredient_" + n;
   var textfield = _forms_js__WEBPACK_IMPORTED_MODULE_0__["createTextField"](id, id, label, {
     'data-modify': '',
-    'maxlength': 50
+    'maxlength': 50,
+    'data-number': n
   });
   element.before(textfield);
   _forms_js__WEBPACK_IMPORTED_MODULE_0__["focusElement"]($('#' + id));
   _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkMaxLength"]();
   addDeleteButton();
-  var ul = $('[list-append]');
   var html = $('<li class="' + id + '" data-placeholder="Click para añadir los ingredientes"></li>');
-  ul.append(html);
+  $('[list-append]').append(html);
   _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
 }
 
 function removeIngredient(ingredient) {
+  var n = ingredient.children('input').attr('data-number');
   var id = ingredient.children('input').attr('id');
   $('.' + id).remove();
   ingredient.prev('.text_characters.delete').remove();
   var nextsTextfields = ingredient.nextAll('.textfield');
-  var nextsInputs = nextsTextfields.children('input');
-  nextsInputs.each(function (index, el) {
+  var nextInputs = nextsTextfields.children('input');
+  $.each(nextInputs, function (index, val) {
+    var n = $(this).attr('data-number');
     var id = $(this).attr('id');
-    var shortid = id[id.length - 1];
-    shortid--;
+    n--;
     $(this).attr({
-      name: 'recipe_ingredient_' + shortid,
-      id: 'recipe_ingredient_' + shortid
+      'name': 'recipe_ingredient_' + n,
+      'id': 'recipe_ingredient_' + n,
+      'data-number': n
     });
-    $('.' + id).addClass('recipe_ingredient_' + shortid).removeClass(id);
-    $(this).siblings('label').attr('for', 'recipe_ingredient_' + shortid);
+    $('.' + id).addClass('recipe_ingredient_' + n).removeClass(id);
+    $(this).siblings('label').attr('for', 'recipe_ingredient_' + n);
   });
   ingredient.remove();
   var ingredients = $('#ingredients_modal .textfield.delete');
@@ -36702,38 +36705,57 @@ function addDeleteButton() {
   textfields.append(deletebutton);
 }
 
-function addStep(button) {
-  var id = $('[id*=_recipe_step_]').last().attr('id').substr(-1);
-  var removeButton = getRemoveStepButton(id);
+function createStep(n) {
+  var id = '_recipe_step_' + n;
 
   if (!$('[id*=_recipe_step_]').last().children('.remove_step').length) {
-    $('[id*=_recipe_step_]').last().append(removeButton);
+    $('[id*=_recipe_step_]').last().append(createRemoveStepButton(n));
   }
 
-  id++;
-  var step = $('<div id="_recipe_step_' + id + '"></div>');
-  var trigger = $('<div class="recipe_description trigger_modal" data-modal="description_modal_' + id + '">' + '<h2>Paso ' + id + ' - <span class="recipe_step_title_' + id + '" data-placeholder=""></span></h2>' + '<div class="recipe_step_description_' + id + '" data-placeholder="Click para añadir descripción del paso ' + id + '"></div>' + '</div>');
-  var modal = $('<div class="modal form" id="description_modal_' + id + '">' + '<div class="col-12">' + '<div class="textfield">' + '<input type="text" data-modify name="recipe_step_title_' + id + '" maxlength="50" id="recipe_step_title_' + id + '">' + '<label for="recipe_step_title_1">Paso ' + id + '</label>' + '</div>' + '<div class="textfield">' + '<textarea name="recipe_step_description_' + id + '" data-modify id="recipe_step_description_' + id + '" maxlength="1000" style="resize: none"></textarea>' + '<label for="recipe_step_description_' + id + '">Descripción</label>' + '</div>' + '<div class="righted">' + '<button class="dense_button close_modal cancel"><span>Cancelar</span></button>' + '<button class="raised_button close_modal accept"><span>Aceptar</span></button>' + '</div>' + '</div>' + '</div>');
-  button.before(step);
-  removeButton = getRemoveStepButton(id);
-  step.append(trigger, modal, removeButton);
+  n++;
+  var step = $('<div id="_recipe_step_' + n + '" data-number="' + n + '"></div>');
+  var trigger = $('<div class="recipe_description trigger_modal" data-modal="description_modal_' + n + '">' + '<h2>Paso ' + n + ' - <span class="recipe_step_title_' + n + '" data-placeholder=""></span></h2>' + '<div class="recipe_step_description_' + n + '" data-placeholder="Click para añadir descripción del paso ' + n + '"></div>' + '</div>');
+  var modal = $('<div class="modal form" id="description_modal_' + n + '">' + '<div class="col-12">' + '<div class="textfield">' + '<input type="text" data-modify name="recipe_step_title_' + n + '" maxlength="50" id="recipe_step_title_' + n + '">' + '<label for="recipe_step_title_' + n + '">Paso ' + n + '</label>' + '</div>' + '<div class="textfield">' + '<textarea name="recipe_step_description_' + n + '" data-modify id="recipe_step_description_' + n + '" maxlength="1000" style="resize: none"></textarea>' + '<label for="recipe_step_description_' + n + '">Descripción</label>' + '</div>' + '<div class="righted">' + '<button class="dense_button close_modal cancel"><span>Cancelar</span></button>' + '<button class="raised_button close_modal accept"><span>Aceptar</span></button>' + '</div>' + '</div>' + '</div>');
+  $('[id*=_recipe_step_]').last().after(step);
+  step.append(trigger, modal, createRemoveStepButton(n));
   modal.after('<overflow></overflow>');
   _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
 }
 
-function removeStep(button) {
-  var id = button.attr('id').substr(-1);
-  var nextSteps = $('#_recipe_step_' + id).siblings('[id*=_recipe_step_]');
-  $('#_recipe_step_' + id).remove();
+function removeStep(element) {
+  var nextSteps = element.nextAll('[id*=_recipe_step_]');
+  element.remove();
   $.each(nextSteps, function (index, val) {
-    var id = $(this).attr('id').substr(-1);
-    $(this).children('[data-modal=description_modal_' + id + ']').children('h2').trim;
-    $(this).attr('id', '_recipe_step_' + id);
-    id--;
+    console.log(n);
+    var n = $(this).attr('data-number');
+    $('[data-modal=description_modal_' + n + '] h2').html($('[data-modal=description_modal_' + n + '] h2').html().replace(n, n - 1));
+    $('.recipe_step_title_' + n).addClass('recipe_step_title_' + (n - 1)).removeClass('recipe_step_title_' + n);
+    $('[data-modal=description_modal_' + n + ']').attr('data-modal', 'description_modal_' + (n - 1));
+    $('.recipe_step_description_' + n).attr('data-placeholder', $('.recipe_step_description_' + n).attr('data-placeholder').replace(n, n - 1)).text('').addClass('recipe_step_description_' + (n - 1)).removeClass('recipe_step_description_' + n);
+    _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
+    $('[for=recipe_step_title_' + n + ']').text($('[for=recipe_step_title_' + n + ']').text().replace(n, n - 1)).attr('for', 'recipe_step_title_' + (n - 1));
+    $('#recipe_step_title_' + n).attr({
+      name: 'recipe_step_title_' + (n - 1),
+      id: 'recipe_step_title_' + (n - 1)
+    });
+    $('#recipe_step_description_' + n).siblings('label').attr('for', 'recipe_step_description_' + (n - 1));
+    $('#recipe_step_description_' + n).attr({
+      name: 'recipe_step_description_' + (n - 1),
+      id: 'recipe_step_description_' + (n - 1)
+    });
+    $(this).attr({
+      'id': '_recipe_step_' + (n - 1),
+      'data-number': n - 1
+    });
+    $('#description_modal_' + n).attr('id', 'description_modal_' + (n - 1));
   });
+
+  if ($('[id*=_recipe_step_]').length == 1) {
+    $('.remove_step').remove();
+  }
 }
 
-function getRemoveStepButton(id) {
+function createRemoveStepButton(id) {
   return '<button id="remove_step_' + id + '" class="outlined_button remove_step" style="display: block; margin: 8px 0;">Eliminar Paso</button>';
 }
 
