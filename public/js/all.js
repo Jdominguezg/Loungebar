@@ -36726,18 +36726,18 @@ function removeStep(element) {
   var nextSteps = element.nextAll('[id*=_recipe_step_]');
   element.remove();
   $.each(nextSteps, function (index, val) {
-    console.log(n);
     var n = $(this).attr('data-number');
     $('[data-modal=description_modal_' + n + '] h2').html($('[data-modal=description_modal_' + n + '] h2').html().replace(n, n - 1));
     $('.recipe_step_title_' + n).addClass('recipe_step_title_' + (n - 1)).removeClass('recipe_step_title_' + n);
     $('[data-modal=description_modal_' + n + ']').attr('data-modal', 'description_modal_' + (n - 1));
+    $('.recipe_step_description_' + n).attr('data-placeholder', $('.recipe_step_description_' + n).attr('data-placeholder').replace(n, n - 1));
 
     if ($('#recipe_step_description_' + n).val().trim() == '') {
       $('.recipe_step_description_' + n).text('');
       _forms_js__WEBPACK_IMPORTED_MODULE_0__["checkDataPlaceholder"]();
     }
 
-    $('.recipe_step_description_' + n).attr('data-placeholder', $('.recipe_step_description_' + n).attr('data-placeholder').replace(n, n - 1)).addClass('recipe_step_description_' + (n - 1)).removeClass('recipe_step_description_' + n);
+    $('.recipe_step_description_' + n).addClass('recipe_step_description_' + (n - 1)).removeClass('recipe_step_description_' + n);
     $('[for=recipe_step_title_' + n + ']').text($('[for=recipe_step_title_' + n + ']').text().replace(n, n - 1)).attr('for', 'recipe_step_title_' + (n - 1));
     $('#recipe_step_title_' + n).attr({
       name: 'recipe_step_title_' + (n - 1),

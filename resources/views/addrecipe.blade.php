@@ -1,7 +1,7 @@
-@extends('index')
+@extends('principal')
 @section('content')
 
-<section class="addrecipe2">
+<section class="addrecipe">
 
 	{{-- En esta versión mejorada veremos el formulario de la misma forma que lo verá el usuario final. --}}
 
@@ -72,5 +72,9 @@
 
 </section>
 
+<div class="produce_recipe center">
+	<div class="col-6 cancel_recipe">Cancelar</div>
+	<div class="col-6 save_recipe">Guardar</div>
+</div>
 
 @endsection

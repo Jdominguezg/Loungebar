@@ -21,11 +21,22 @@
 	outline: none;
 }
 
+html, 
+body {
+    height: 100%;
+}
+
+body{
+	margin-top: 56px;
+}
+
+
 ul{
 	padding-inline-start: 40px;
 }
 
 @import 'header.scss';
+@import 'index.scss';
 @import 'nav.scss';
 @import 'content.scss';
 @import 'addrecipe.scss';
