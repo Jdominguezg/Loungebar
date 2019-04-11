@@ -245,6 +245,13 @@ h6 {
           transform: translateY(-50%);
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
 .textfield {
   position: relative;
   min-height: 56px;
@@ -308,6 +315,11 @@ h6 {
   font-size: 12px;
   padding: 0 4px;
   background-color: #fff;
+}
+
+.textfield label.notEmpty,
+.textfield input:focus + label {
+  top: -3px;
 }
 
 .textfield input:focus + label,
@@ -583,6 +595,16 @@ header {
           transform: translate(-50%, -50%);
   box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
+  padding: 15px;
+}
+
+.login_title {
+  position: absolute;
+  top: -56px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: #fff;
 }
 
 nav {

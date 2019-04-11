@@ -1,3 +1,9 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
 .textfield{
 	position: relative;
 	min-height: 56px;	
@@ -57,6 +63,10 @@
 	font-size: 12px;
 	padding: 0 4px;
 	background-color: #fff;
+}
+.textfield label.notEmpty,
+.textfield input:focus + label{
+	top: -3px;
 }
 
 .textfield input:focus + label,
