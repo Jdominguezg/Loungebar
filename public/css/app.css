@@ -355,6 +355,7 @@ button {
   text-transform: uppercase;
   cursor: pointer;
   background-color: transparent;
+  transition: all 0.28s linear;
 }
 
 [class*=col-] button,
@@ -460,17 +461,25 @@ button.action_button .material-icons {
   margin: 0;
 }
 
-button.raised_button,
-button.action_button {
-  transition: all 0.28s linear;
-}
-
 button.unelevated_button,
 button.raised_button,
 button.shaped_button,
 button.action_button {
   color: #ffffff;
   background-color: #795548;
+}
+
+button.social_button {
+  width: 100%;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+button.social_button:hover {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+button.social_button .fab {
+  margin: 0 5px;
 }
 
 .modal {
@@ -584,9 +593,9 @@ header {
   z-index: 0;
 }
 
-.login_modal {
+.flip_card {
   width: 350px;
-  height: 500px;
+  height: 425px;
   background-color: #fff;
   position: absolute;
   top: 50%;
@@ -595,16 +604,49 @@ header {
           transform: translate(-50%, -50%);
   box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
-  padding: 15px;
+  padding: 0 30px;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.login_modal,
+.signin_modal {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 .login_title {
   position: absolute;
-  top: -56px;
   left: 50%;
+  top: calc(50% - 265px);
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   color: #fff;
+}
+
+.login_button {
+  margin-top: 0;
+}
+
+.register_now {
+  margin: 10px 0;
+}
+
+.register_now,
+.register_now a {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 nav {

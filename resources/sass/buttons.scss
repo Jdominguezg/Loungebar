@@ -20,6 +20,7 @@ button{
 	text-transform: uppercase;
 	cursor: pointer;
 	background-color: transparent;
+	transition: all .28s linear;
 }
 
 [class*='col-'] button,
@@ -123,15 +124,21 @@ button.action_button .material-icons
 	margin: 0;
 }
 
-button.raised_button,
-button.action_button{
-	transition: all .28s linear;
-}
-
 button.unelevated_button,
 button.raised_button,
 button.shaped_button,
 button.action_button{
 	color: $secondary_text;
 	background-color: $secondary_color;
+}
+
+button.social_button{
+	width: 100%;
+	box-shadow: $dp2;
+}
+button.social_button:hover{
+	box-shadow: $dp4;
+}
+button.social_button .fab{
+	margin: 0 5px;
 }
