@@ -36810,7 +36810,9 @@ __webpack_require__(/*! ./forms.js */ "./resources/js/forms.js");
 
 __webpack_require__(/*! ./addrecipe.js */ "./resources/js/addrecipe.js");
 
-__webpack_require__(/*! ./modals.js */ "./resources/js/modals.js"); // require('./addrecipe.js');
+__webpack_require__(/*! ./modals.js */ "./resources/js/modals.js");
+
+__webpack_require__(/*! ./login_signin.js */ "./resources/js/login_signin.js"); // require('./addrecipe.js');
 // Comented
 // window.Vue = require('vue');
 
@@ -36974,6 +36976,32 @@ function createTextField(id, name) {
 function focusElement(e) {
   e.focus();
 }
+
+/***/ }),
+
+/***/ "./resources/js/login_signin.js":
+/*!**************************************!*\
+  !*** ./resources/js/login_signin.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  $(document).on('click', '.go_signin', function (event) {
+    $('.login_modal').addClass('back');
+    $('.login_title').addClass('back_title');
+    $('.signin_modal').removeClass('back');
+    $('.signin_title').removeClass('back_title');
+    $('#signin_name').focus();
+  });
+  $(document).on('click', '.signin_modal .arrow_back', function (event) {
+    $('.login_modal').removeClass('back');
+    $('.login_title').removeClass('back_title');
+    $('.signin_modal').addClass('back');
+    $('.signin_title').addClass('back_title');
+    $('#username').focus();
+  });
+});
 
 /***/ }),
 

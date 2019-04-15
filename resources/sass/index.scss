@@ -17,7 +17,8 @@
 	left: 0;
 	z-index: 0;
 }
-.flip_card{
+.login_modal,
+.signin_modal{
 	width: 350px;
 	height: 425px;
 	background-color: #fff;
@@ -39,15 +40,21 @@
 	transform-style: preserve-3d;
 }
 .login_modal,
-.signin_modal{
+.signin_modal,
+.login_title,
+.signin_title{
 	backface-visibility: hidden;
 }
-.login_title{
+.login_title,
+.signin_title{
 	position: absolute;
 	left: 50%;
 	top: calc(50% - 265px);
 	transform: translateX(-50%);
 	color: #fff;
+	perspective: 1000px;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
 }
 .login_button{
 	margin-top: 0;
@@ -60,4 +67,16 @@
 .register_now a{
 	font-size: 14px;
 	color: rgba(0,0,0,0.6);
+}
+
+.signin_modal .arrow_back{
+	position: absolute;
+	top: 16px;
+	left:16px;
+}
+.back{
+	transform: translate(-50%, -50%) rotateY(180deg);
+}
+.back_title{
+	transform: translateX(-50%) rotateY(180deg);
 }

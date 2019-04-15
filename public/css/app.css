@@ -547,10 +547,6 @@ body {
   height: 100%;
 }
 
-body {
-  margin-top: 56px;
-}
-
 ul {
   -webkit-padding-start: 40px;
           padding-inline-start: 40px;
@@ -593,7 +589,8 @@ header {
   z-index: 0;
 }
 
-.flip_card {
+.login_modal,
+.signin_modal {
   width: 350px;
   height: 425px;
   background-color: #fff;
@@ -621,18 +618,28 @@ header {
 }
 
 .login_modal,
-.signin_modal {
+.signin_modal,
+.login_title,
+.signin_title {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
 
-.login_title {
+.login_title,
+.signin_title {
   position: absolute;
   left: 50%;
   top: calc(50% - 265px);
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   color: #fff;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
 }
 
 .login_button {
@@ -647,6 +654,22 @@ header {
 .register_now a {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.signin_modal .arrow_back {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.back {
+  -webkit-transform: translate(-50%, -50%) rotateY(180deg);
+          transform: translate(-50%, -50%) rotateY(180deg);
+}
+
+.back_title {
+  -webkit-transform: translateX(-50%) rotateY(180deg);
+          transform: translateX(-50%) rotateY(180deg);
 }
 
 nav {
