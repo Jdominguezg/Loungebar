@@ -36812,8 +36812,7 @@ __webpack_require__(/*! ./addrecipe.js */ "./resources/js/addrecipe.js");
 
 __webpack_require__(/*! ./modals.js */ "./resources/js/modals.js");
 
-__webpack_require__(/*! ./login_signin.js */ "./resources/js/login_signin.js"); // require('./addrecipe.js');
-// Comented
+__webpack_require__(/*! ./login_signin.js */ "./resources/js/login_signin.js"); // Comented
 // window.Vue = require('vue');
 
 /**
@@ -36992,7 +36991,9 @@ $(document).ready(function () {
     $('.login_title').addClass('back_title');
     $('.signin_modal').removeClass('back');
     $('.signin_title').removeClass('back_title');
-    $('#signin_name').focus();
+    setTimeout(function () {
+      $('#signin_name').focus();
+    }, 300);
   });
   $(document).on('click', '.signin_modal .arrow_back', function (event) {
     $('.login_modal').removeClass('back');

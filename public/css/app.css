@@ -301,6 +301,7 @@ input:-webkit-autofill:active {
   transition: all 0.15s ease;
   background-color: transparent;
   cursor: text;
+  z-index: 1;
 }
 
 .textfield input:focus,
@@ -331,6 +332,32 @@ input:-webkit-autofill:active {
   font-size: 12px;
   margin-bottom: -5px;
   transition: all 0.15s ease;
+}
+
+.textfield .toast {
+  background: rgba(0, 0, 0, 0.9);
+  width: 200px;
+  min-height: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 4px;
+  box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  color: #fff;
+  padding: 16px;
+  font-weight: 300;
+  text-align: left;
+  z-index: 3;
+  font-size: 14px;
+}
+
+.textfield input:focus ~ .toast {
+  bottom: 65px;
+  opacity: 1;
+  visibility: visible;
 }
 
 button {
@@ -547,6 +574,10 @@ body {
   height: 100%;
 }
 
+.content {
+  margin-top: 56px;
+}
+
 ul {
   -webkit-padding-start: 40px;
           padding-inline-start: 40px;
@@ -607,7 +638,6 @@ header {
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
   -webkit-perspective: 1000px;
           perspective: 1000px;
   transition: -webkit-transform 0.8s;

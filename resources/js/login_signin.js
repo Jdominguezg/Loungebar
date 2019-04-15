@@ -5,7 +5,10 @@ $(document).ready(function() {
 		$('.login_title').addClass('back_title');
 		$('.signin_modal').removeClass('back');
 		$('.signin_title').removeClass('back_title');
-		$('#signin_name').focus();
+		setTimeout(function(){
+			$('#signin_name').focus();
+		}, 300)
+		
 	});
 	$(document).on('click', '.signin_modal .arrow_back', function(event){
 		$('.login_modal').removeClass('back');

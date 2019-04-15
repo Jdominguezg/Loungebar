@@ -50,6 +50,7 @@ input:-webkit-autofill:active  {
 	transition: all 0.15s ease;
 	background-color: transparent;
 	cursor: text;
+	z-index: 1;
 }
 .textfield input:focus,
 .textfield textarea:focus{
@@ -77,4 +78,28 @@ input:-webkit-autofill:active  {
 	font-size: 12px;
 	margin-bottom: -5px;
 	transition: all .15s ease;
+}
+.textfield .toast{
+	background: rgba(0,0,0,0.9);
+	width: 200px;
+	min-height: 50px;
+	position: absolute;
+	bottom:0;
+	left: 0;
+	border-radius: 4px;
+	box-shadow: $dp3;
+	transition: all .3s ease;
+	opacity: 0;
+	visibility: hidden;
+	color: #fff;
+	padding: 16px;
+	font-weight: 300;
+	text-align: left;
+	z-index: 3;
+	font-size: 14px;
+}
+.textfield input:focus ~ .toast{
+	bottom: 65px;
+	opacity: 1;
+	visibility: visible;
 }

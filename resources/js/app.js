@@ -11,7 +11,7 @@ require('./forms.js');
 require('./addrecipe.js');
 require('./modals.js');
 require('./login_signin.js');
-// require('./addrecipe.js');
+
 
 // Comented
 // window.Vue = require('vue');

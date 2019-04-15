@@ -9,7 +9,7 @@
 	<div class="col-12">
 		<div class="textfield">
 			<input type="text" name="username" id="username" autofocus>
-			<label for="username">Usuario</label>
+			<label for="username">Usuario / Correo Electrónico</label>
 		</div>
 		<div class="textfield">
 			<input type="password" name="password" id="password">
@@ -32,20 +32,33 @@
 	<i class="material-icons arrow_back pointer">arrow_back</i>
 	<div class="col-12">
 		<div class="textfield">
-			<input type="text" name="name" id="signin_name">
-			<label for="signin_name">Nombre</label>
+			<input type="text" name="name" id="signin_name" maxlength="50">
+			<label for="signin_name">Nickname</label>
+			<div class="toast">Este será el nombre que se mostrará al resto de usuarios de la plataforma.</div>
 		</div>
 		<div class="textfield">
-			<input type="text" name="username" id="signin_username">
+			<input type="text" name="username" id="signin_username" maxlength="25">
 			<label for="signin_username">Usuario</label>
+			<div class="toast">Este es el identificador que te servirá tanto para iniciar sesión como para que los usuarios te encuentren de manera más sencilla y te puedan etiquetar.</div>
 		</div>
 		<div class="textfield">
 			<input type="password" name="password" id="signin_password">
 			<label for="signin_password">Contraseña</label>
+			<div class="toast">
+				Debe contener:
+				<ul>
+					<li>8 caracteres</li>
+					<li>Letras Mayúsculas</li>
+					<li>Letras Minúsculas</li>
+					<li>Números</li>
+					<li>Caracteres extraños (!@_-?#$...)</li>
+				</ul>
+			</div>
 		</div>
 		<div class="textfield">
-			<input type="email" name="mail" id="signin_mail">
+			<input type="email" name="mail" id="signin_mail" maxlength="100">
 			<label for="signin_mail">Correo Electrónico</label>
+			<div class="toast">También podrás iniciar sesión utilizando el correo electrónico, una vez lo hayas validado.</div>
 		</div>
 		<button class="raised_button">Registrarse</button>
 	</div>

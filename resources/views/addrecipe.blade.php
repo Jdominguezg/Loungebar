@@ -1,9 +1,8 @@
 @extends('principal')
 @section('content')
 
-<section class="addrecipe">
+<section class="addrecipe content">
 
-	{{-- En esta versión mejorada veremos el formulario de la misma forma que lo verá el usuario final. --}}
 
 	<div class="recipe_form">
 		
