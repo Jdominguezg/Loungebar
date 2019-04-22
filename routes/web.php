@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/addrecipe', function(){
 	return view('addrecipe');
 });
+
+Route::get('/recipecard', function(){
+	return view('recipecard');
+});

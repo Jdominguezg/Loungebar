@@ -917,3 +917,30 @@ section.content {
   background-color: rgba(0, 0, 0, 0.15);
 }
 
+.recipe_card {
+  height: 456px;
+  width: 100%;
+  max-width: 400px;
+  border-bottom: 1px solid #ccc;
+}
+
+.recipe_card .recipe_img {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.recipe_card .recipe_img:after {
+  content: "";
+  height: 300px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  background: linear-gradient(to top, black 0%, rgba(0, 0, 0, 0) 100%);
+}
+
