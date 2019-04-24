@@ -6,13 +6,14 @@
 
 <section class="login_modal">
 	<div class="col-12">
-		<form method="get" action="{{ url('/') }}">
+		<form method="post" action="{{ url('/validateLogin') }}">
+			{{ csrf_field() }}
 			<div class="textfield">
-				<input type="text" name="log_user" id="log_user" value="{{$log_user}}" autofocus>
+				<input type="text" name="log_user" id="log_user" value="" autofocus>
 				<label for="log_user">Usuario / Correo Electrónico</label>
 			</div>
 			<div class="textfield">
-				<input type="password" name="log_password" value="{{$log_password}}" id="log_password">
+				<input type="password" name="log_password" value="" id="log_password">
 				<label for="log_password">Contraseña</label>
 			</div>
 			<button class="raised_button login_button"><span>Iniciar sesión</span></button>
@@ -31,22 +32,22 @@
 <h1 class="signin_title light back_title">Registrarse</h1>
 
 <section class="signin_modal back">
-	<form method="post" action="{{ url('/') }}">
+	<form method="post" action="{{ url('/validateSignin') }}">
 		{{ csrf_field() }}
 		<i class="material-icons arrow_back pointer">arrow_back</i>
 		<div class="col-12">
 			<div class="textfield">
-				<input type="text" name="signin_nickname" id="signin_nickname" maxlength="50" value="{{$sign_nickname}}">
+				<input type="text" name="signin_nickname" id="signin_nickname" maxlength="50" value="">
 				<label for="signin_nickname">Nickname</label>
-				<div class="toast">Este será el nombre que se mostrará al resto de usuarios de la plataforma.</div>
+				<div class="toast">Este será el nombre que se mostrará al resto de usuarios de la plataforma.</div>				
 			</div>
 			<div class="textfield">
-				<input type="text" name="signin_username" id="signin_username" maxlength="25" value="{{$sign_userid}}">
+				<input type="text" name="signin_username" id="signin_username" maxlength="25" value="">
 				<label for="signin_username">Usuario</label>
 				<div class="toast">Este es el identificador que te servirá tanto para iniciar sesión como para que los usuarios te encuentren de manera más sencilla y te puedan etiquetar.</div>
 			</div>
 			<div class="textfield">
-				<input type="password" name="signin_password" id="signin_password" values="{{$sign_password}}">
+				<input type="password" name="signin_password" id="signin_password" value="">
 				<label for="signin_password">Contraseña</label>
 				<div class="toast">
 					Debe contener:
@@ -60,7 +61,7 @@
 				</div>
 			</div>
 			<div class="textfield">
-				<input type="email" name="signin_email" id="signin_email" maxlength="100" values="{{$sign_email}}">
+				<input type="email" name="signin_email" id="signin_email" maxlength="100" value="">
 				<label for="signin_email">Correo Electrónico</label>
 				<div class="toast">También podrás iniciar sesión utilizando el correo electrónico, una vez lo hayas validado.</div>
 			</div>

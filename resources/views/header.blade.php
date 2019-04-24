@@ -4,4 +4,3 @@
 	</div>
 	
 </header>
-@include('nav')

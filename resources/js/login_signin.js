@@ -6,7 +6,7 @@ $(document).ready(function() {
 		$('.signin_modal').removeClass('back');
 		$('.signin_title').removeClass('back_title');
 		setTimeout(function(){
-			$('#signin_name').focus();
+			$('#signin_nickname').focus();
 		}, 300)
 		
 	});
@@ -15,7 +15,7 @@ $(document).ready(function() {
 		$('.login_title').removeClass('back_title');
 		$('.signin_modal').addClass('back');
 		$('.signin_title').addClass('back_title');
-		$('#username').focus();
+		$('#log_user').focus();
 	})
 
 });

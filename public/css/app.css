@@ -316,8 +316,8 @@ input:-webkit-autofill:active {
 }
 
 .textfield label.notEmpty,
-.textfield input:focus + label,
-.textfield textarea:focus + label {
+.textfield input:focus ~ label,
+.textfield textarea:focus ~ label {
   top: -7px;
   font-size: 12px;
   padding: 0 4px;

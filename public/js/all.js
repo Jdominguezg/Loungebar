@@ -36997,7 +36997,7 @@ $(document).ready(function () {
     $('.signin_modal').removeClass('back');
     $('.signin_title').removeClass('back_title');
     setTimeout(function () {
-      $('#signin_name').focus();
+      $('#signin_nickname').focus();
     }, 300);
   });
   $(document).on('click', '.signin_modal .arrow_back', function (event) {
@@ -37005,7 +37005,7 @@ $(document).ready(function () {
     $('.login_title').removeClass('back_title');
     $('.signin_modal').addClass('back');
     $('.signin_title').addClass('back_title');
-    $('#username').focus();
+    $('#log_user').focus();
   });
 });
 
@@ -37173,8 +37173,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! B:\proyectos_web\Loungebar\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! B:\proyectos_web\Loungebar\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

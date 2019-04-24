@@ -11,7 +11,9 @@
 |
 */
 
-// Route::get('/', 'HomeController@index');
+Route::get('/', function(){
+	return view('index');
+});
 
 Route::get('/addrecipe', function(){
 	return view('addrecipe');
@@ -22,4 +24,5 @@ Route::get('/recipecard', function(){
 });
 
 // Peticiones GET y POST;
-Route::any("/", "HomeController@index");
+Route::post("/validateSignin", "HomeController@validateSignin");
+Route::post("/validateLogin", "HomeController@validateLogin");
