@@ -37007,6 +37007,50 @@ $(document).ready(function () {
     $('.signin_title').addClass('back_title');
     $('#log_user').focus();
   });
+  $(document).on('click', '.login_button', function (event) {
+    event.preventDefault();
+    var submit = false;
+    var inputs = $(this).siblings().find('input');
+
+    try {
+      $.each(inputs, function (index, val) {
+        if ($(this).val().trim() == '') {
+          alert('Complete los campos correctamente para iniciar sesión');
+          $(this).focus();
+          throw submit = false;
+        } else {
+          submit = true;
+        }
+      });
+    } catch (_unused) {}
+
+    ;
+
+    if (submit) {
+      $(this).parents('form').submit();
+    }
+  });
+  $(document).on('click', '.singin_button', function (event) {
+    event.preventDefault();
+    var submit = false;
+    var inputs = $(this).siblings().find('input');
+
+    try {
+      $.each(inputs, function (index, val) {
+        if ($(this).val().trim() == '') {
+          alert('Complete los campos correctamente para registrarse');
+          $(this).focus();
+          throw submit = false;
+        } else {
+          submit = true;
+        }
+      });
+    } catch (_unused2) {}
+
+    if (submit) {
+      $(this).parents('form').submit();
+    }
+  });
 });
 
 /***/ }),
