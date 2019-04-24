@@ -1,6 +1,8 @@
 <header class="center">
-	<div class="col-12 logo">
-		Tastefull
-	</div>
+	
+	<a href="{{ url('/') }}" class="col-12 logo">
+		Tastefull		
+	</a>
+	
 	
 </header>
