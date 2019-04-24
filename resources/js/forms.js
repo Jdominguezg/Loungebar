@@ -1,16 +1,10 @@
 // España!!
 $(document).ready(function() {
 
-	$(document).on('change', '.textfield input, .textfield textarea', function(){
-		var input = $(this);
-		var label = input.siblings('label');
+	isEmpty();
 
-		if(input.val().trim()!= ''){
-			label.addClass('notEmpty');			
-		}else{
-			label.removeClass('notEmpty');
-			input.val('');
-		}
+	$(document).on('change', '.textfield input, .textfield textarea', function(){
+		isEmpty()
 	});	
 	
 	$(document).on('keyup', '.textfield [maxlength]', function(e){
@@ -21,6 +15,20 @@ $(document).ready(function() {
 	checkDataPlaceholder();
 	
 });
+
+export function isEmpty(){
+	var inputs = $('input');
+
+	$.each(inputs, function(index, val) {
+		if($(this).val().trim()!=''){
+			$(this).siblings('label').addClass('notEmpty');
+		}else{
+			$(this).siblings('label').removeClass('notEmpty');
+			$(this).val('');
+		}
+	});
+	
+}
 
 export function checkMaxLength(){
 	$('.textfield [maxlength]').each(function(index, el){		

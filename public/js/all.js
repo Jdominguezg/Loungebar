@@ -36901,11 +36901,12 @@ if (token) {
 /*!*******************************!*\
   !*** ./resources/js/forms.js ***!
   \*******************************/
-/*! exports provided: checkMaxLength, checkDataPlaceholder, createCharLength, updateCharLength, createTextField, focusElement */
+/*! exports provided: isEmpty, checkMaxLength, checkDataPlaceholder, createCharLength, updateCharLength, createTextField, focusElement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEmpty", function() { return isEmpty; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkMaxLength", function() { return checkMaxLength; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkDataPlaceholder", function() { return checkDataPlaceholder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCharLength", function() { return createCharLength; });
@@ -36914,16 +36915,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "focusElement", function() { return focusElement; });
 // España!!
 $(document).ready(function () {
+  isEmpty();
   $(document).on('change', '.textfield input, .textfield textarea', function () {
-    var input = $(this);
-    var label = input.siblings('label');
-
-    if (input.val().trim() != '') {
-      label.addClass('notEmpty');
-    } else {
-      label.removeClass('notEmpty');
-      input.val('');
-    }
+    isEmpty();
   });
   $(document).on('keyup', '.textfield [maxlength]', function (e) {
     updateCharLength($(this));
@@ -36931,6 +36925,17 @@ $(document).ready(function () {
   checkMaxLength();
   checkDataPlaceholder();
 });
+function isEmpty() {
+  var inputs = $('input');
+  $.each(inputs, function (index, val) {
+    if ($(this).val().trim() != '') {
+      $(this).siblings('label').addClass('notEmpty');
+    } else {
+      $(this).siblings('label').removeClass('notEmpty');
+      $(this).val('');
+    }
+  });
+}
 function checkMaxLength() {
   $('.textfield [maxlength]').each(function (index, el) {
     createCharLength($(this));

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', 'HomeController@index');
 
 Route::get('/addrecipe', function(){
 	return view('addrecipe');
@@ -22,3 +20,6 @@ Route::get('/addrecipe', function(){
 Route::get('/recipecard', function(){
 	return view('recipecard');
 });
+
+// Peticiones GET y POST;
+Route::any("/", "HomeController@index");
