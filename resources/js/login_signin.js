@@ -41,7 +41,7 @@ $(document).ready(function() {
 		
 	});
 
-	$(document).on('click', '.singin_button', function(event) {
+	$(document).on('click', '.signin_button', function(event) {
 		event.preventDefault();
 		var submit = false;
 		var inputs = $(this).siblings().find('input');

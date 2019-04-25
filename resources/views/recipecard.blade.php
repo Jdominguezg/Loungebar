@@ -2,7 +2,7 @@
 @section('content')
 <section style="margin-top:56px;">	
 	@for ($i = 0; $i < 5 ; $i++)
-	<div class="recipe_card">
+	<div class="recipe_card centered">
 		<div class="recipe_card_header">
 			<a href="#">
 				<div class="user_info">

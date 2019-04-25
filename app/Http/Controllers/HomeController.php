@@ -48,7 +48,7 @@ class HomeController extends Controller
 
 		$password = DB::table('users')->select('PASSWORD')->where('ID', $log_user)->orWhere('EMAIL', $log_user)->get()[0]->PASSWORD;
 		if($password == $log_password){
-			return 'Logueado to Crema';
+			return redirect('addrecipe');
 		}else{
 			return 'La Contraseña es incorrecta o el usuario no existe';
 		}

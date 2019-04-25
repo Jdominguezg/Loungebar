@@ -65,7 +65,7 @@
 				<label for="signin_email">Correo Electrónico</label>
 				<div class="toast">También podrás iniciar sesión utilizando el correo electrónico, una vez lo hayas validado.</div>
 			</div>
-			<button class="raised_button">Registrarse</button>
+			<button class="raised_button signin_button">Registrarse</button>
 		</form>
 	</div>
 </section>

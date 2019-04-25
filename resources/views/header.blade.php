@@ -1,6 +1,6 @@
 <header class="center">
 	
-	<a href="{{ url('/') }}" class="col-12 logo">
+	<a href="{{ url('/') }}" class=" centered logo">
 		Tastefull		
 	</a>
 	

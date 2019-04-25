@@ -37030,7 +37030,7 @@ $(document).ready(function () {
       $(this).parents('form').submit();
     }
   });
-  $(document).on('click', '.singin_button', function (event) {
+  $(document).on('click', '.signin_button', function (event) {
     event.preventDefault();
     var submit = false;
     var inputs = $(this).siblings().find('input');
@@ -37217,8 +37217,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! B:\proyectos_web\Loungebar\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! B:\proyectos_web\Loungebar\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/dymcanarias/Documents/GitHub/Loungebar/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
