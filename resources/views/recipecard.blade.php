@@ -6,8 +6,8 @@
 		<div class="recipe_card_header">
 			<a href="#">
 				<div class="user_info">
-					<div class="user_img" style="background-image: url('{{ asset('imgs/user.png') }}')"></div>
-					<div class="user_name medium">Pepe el Cojo</div>
+					<div class="user_img" style="background-image: url('{{ asset('imgs/user'.($i+1).'.png') }}')"></div>
+					<div class="user_name medium">Usuario de Prueba {{$i+1}}</div>
 				</div>
 			</a>
 			<a href="#">
@@ -28,7 +28,7 @@
 					</div>
 					<div class="recipe_duration">
 						<i class="material-icons">access_time</i>
-						<span style="margin:0 5px" class="recipe_duration_time">3 Horas y 2 minutos</span>
+						<span style="margin:0 5px" class="recipe_duration_time">{{rand(2,6)}} Horas y {{rand(2,60)}} minutos</span>
 					</div>
 				</div>
 				<div class="show_more">ver más</div>

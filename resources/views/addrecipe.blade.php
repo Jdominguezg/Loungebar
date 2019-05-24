@@ -24,8 +24,8 @@
 				<span style="margin:0 5px" class="recipe_duration_time" data-placeholder="Click para añadir la duración de la receta."></span>
 			</div>
 			<div class="user_info">
-				<div class="user_avatar" style="background-image: url({{ asset('imgs/user.png') }})"></div>
-				<div class="user_name"><a href="#">@Pepe_el_cojo</a></div>
+				<div class="user_avatar" style="background-image: url({{ asset('imgs/user5.png') }})"></div>
+				<div class="user_name"><a href="#">@Test_user</a></div>
 				<div class="user_rate">
 					<i class="material-icons">star</i>
 					<i class="material-icons">star</i>
